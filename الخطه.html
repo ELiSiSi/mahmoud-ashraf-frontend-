@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>خطة مشروع موقع الشيخ محمود أشرف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1B5E20;
+    --primary-light:#2E7D32;
+    --gold:#C8A951;
+    --gold-light:#E0C878;
+    --bg:#FAF9F6;
+    --card:#FFFFFF;
+    --text:#1A1A1A;
+    --muted:#6B7280;
+    --danger:#C62828;
+    --border:#E5E7EB;
+    --shadow:0 2px 12px rgba(0,0,0,.06);
+    --shadow-lg:0 10px 30px rgba(0,0,0,.10);
+    --code-bg:#0F172A;
+    --code-text:#E2E8F0;
+    --th-bg:#F3F4F6;
+    --note-bg:linear-gradient(135deg,#FFF8E1,#FFFDE7);
+    --note-border:#C8A951;
+    --warn-bg:#FFEBEE;
+    --ok-bg:#E8F5E9;
+    --cloud:#3448C5;
+    --cloud-bg:#EEF1FF;
+    --version:#7C3AED;
+    --version-bg:#F3E8FF;
+  }
+
+  html.dark{
+    --primary:#4ADE80;
+    --primary-light:#22C55E;
+    --gold:#E0C878;
+    --gold-light:#F0D896;
+    --bg:#0B1220;
+    --card:#111827;
+    --text:#E5E7EB;
+    --muted:#9CA3AF;
+    --danger:#F87171;
+    --border:#1F2937;
+    --shadow:0 2px 12px rgba(0,0,0,.4);
+    --shadow-lg:0 10px 30px rgba(0,0,0,.6);
+    --code-bg:#020617;
+    --code-text:#E2E8F0;
+    --th-bg:#1F2937;
+    --note-bg:linear-gradient(135deg,#1E293B,#0F172A);
+    --note-border:#E0C878;
+    --warn-bg:#3B1111;
+    --ok-bg:#0F2A1A;
+    --cloud:#7DD3FC;
+    --cloud-bg:#0F172A;
+    --version:#C4B5FD;
+    --version-bg:#1E1B4B;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Cairo',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.8;
+    padding:0 0 80px;
+    transition:background .3s,color .3s;
+  }
+  .container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  .theme-toggle{
+    position:fixed;top:20px;left:20px;z-index:999;
+    width:52px;height:52px;border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--card);color:var(--text);
+    font-size:22px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow-lg);
+    transition:.25s;
+  }
+  .theme-toggle:hover{transform:scale(1.1) rotate(15deg);border-color:var(--gold)}
+
+  header.hero{
+    background:linear-gradient(135deg,#1B5E20 0%,#2E7D32 60%,#388E3C 100%);
+    color:#fff;
+    padding:70px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  html.dark header.hero{
+    background:linear-gradient(135deg,#0F172A 0%,#1E293B 60%,#0B1220 100%);
+  }
+  header.hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 90% 20%,rgba(200,169,81,.25),transparent 45%);
+  }
+  .hero-inner{position:relative;z-index:2}
+  .badge{
+    display:inline-block;background:rgba(200,169,81,.2);
+    color:var(--gold-light);padding:6px 16px;border-radius:30px;
+    font-size:14px;font-weight:600;border:1px solid rgba(200,169,81,.4);
+    margin-bottom:16px;
+  }
+  header.hero h1{font-size:38px;font-weight:900;margin-bottom:12px;letter-spacing:-.5px}
+  header.hero p{font-size:17px;opacity:.9;max-width:640px}
+
+  section{
+    background:var(--card);
+    border-radius:18px;
+    padding:32px 28px;
+    margin-top:28px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    transition:background .3s,border-color .3s;
+  }
+  section h2{
+    font-size:24px;font-weight:800;color:var(--primary);
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:20px;padding-bottom:14px;
+    border-bottom:2px solid var(--border);
+  }
+  section h2 .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-light));
+    color:#fff;font-size:16px;font-weight:800;
+    flex-shrink:0;
+  }
+  section h3{
+    font-size:18px;font-weight:700;color:var(--primary-light);
+    margin:22px 0 10px;
+  }
+  p, li{font-size:15.5px;color:var(--text)}
+  ul{padding-right:22px;margin:8px 0}
+  li{margin-bottom:6px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}
+  .card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:18px;
+    transition:.25s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+  .card .icon{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,#E8F5E9,#C8E6C9);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;margin-bottom:10px;
+  }
+  html.dark .card .icon{background:linear-gradient(135deg,#1E3A2A,#0F2A1A)}
+  .card h4{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--primary)}
+  .card p{font-size:14px;color:var(--muted)}
+
+  pre{
+    background:var(--code-bg);color:var(--code-text);
+    padding:18px 20px;border-radius:12px;
+    overflow-x:auto;font-size:13.5px;
+    direction:ltr;text-align:left;
+    font-family:'Courier New',monospace;
+    line-height:1.7;margin:12px 0;
+    border:1px solid #1E293B;
+  }
+  code{font-family:'Courier New',monospace}
+  .comment{color:#64748B}
+  .key{color:#7DD3FC}
+  .str{color:#FCD34D}
+  .num2{color:#F472B6}
+  .bool{color:#F472B6}
+
+  .tree-wrap{
+    background:var(--code-bg);
+    border-radius:14px;
+    padding:24px 26px;
+    margin-top:16px;
+    border:1px solid #1E293B;
+    overflow-x:auto;
+    direction:ltr;
+    text-align:left;
+  }
+  .tree{
+    font-family:'Courier New',monospace;
+    font-size:14px;
+    line-height:2;
+    color:#E2E8F0;
+    white-space:pre;
+    display:inline-block;
+    min-width:100%;
+  }
+  .tree .folder{color:#7DD3FC;font-weight:bold}
+  .tree .file{color:#E2E8F0}
+  .tree .imp{color:#FCD34D;font-weight:bold}
+  .tree .comment{color:#64748B;font-style:italic}
+  .tree .line{display:block}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px}
+  th,td{padding:12px 14px;text-align:right;border-bottom:1px solid var(--border)}
+  th{background:var(--th-bg);font-weight:700;color:var(--primary);font-size:14px}
+  tbody tr:hover td{background:rgba(200,169,81,.08)}
+
+  .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+  .flow .step{
+    background:var(--card);border:1px solid var(--border);
+    padding:10px 16px;border-radius:30px;
+    font-size:14px;font-weight:600;color:var(--primary);
+  }
+  .flow .arrow{color:var(--gold);font-weight:900}
+
+  .note{
+    background:var(--note-bg);
+    border-right:4px solid var(--note-border);
+    padding:14px 18px;border-radius:10px;margin:14px 0;
+    font-size:14.5px;color:var(--text);
+  }
+  .note strong{color:var(--gold)}
+  html:not(.dark) .note strong{color:#8D6E00}
+  .warn{
+    background:var(--warn-bg);border-right:4px solid var(--danger);
+    padding:14px 18px;border-radius:10px;margin:14px 0;font-size:14.5px;
+    color:var(--text);
+  }
+  .warn strong{color:var(--danger)}
+  .ok{
+    background:var(--ok-bg);border-right:4px solid var(--primary);
+    padding:14px 18px;border-radius:10px;margin:14px 0;font-size:14.5px;
+    color:var(--text);
+  }
+  .ok strong{color:var(--primary)}
+  .cloud-box{
+    background:var(--cloud-bg);
+    border-right:4px solid var(--cloud);
+    padding:14px 18px;border-radius:10px;margin:14px 0;font-size:14.5px;
+    color:var(--text);
+  }
+  .cloud-box strong{color:var(--cloud)}
+  .version-box{
+    background:var(--version-bg);
+    border-right:4px solid var(--version);
+    padding:14px 18px;border-radius:10px;margin:14px 0;font-size:14.5px;
+    color:var(--text);
+  }
+  .version-box strong{color:var(--version)}
+
+  .steps{counter-reset:step;margin-top:14px}
+  .steps .step-item{
+    position:relative;
+    padding:14px 20px 14px 60px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:10px;
+    transition:.25s;
+  }
+  .steps .step-item:hover{border-color:var(--gold);transform:translateX(-4px)}
+  .steps .step-item::before{
+    counter-increment:step;
+    content:counter(step);
+    position:absolute;
+    left:16px;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,var(--cloud),#5B6EE1);
+    color:#fff;font-weight:800;font-size:15px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps .step-item h5{font-size:15.5px;font-weight:700;color:var(--primary);margin-bottom:4px}
+  .steps .step-item p{font-size:14px;color:var(--muted)}
+
+  .url-example{
+    background:#0F172A;color:#E2E8F0;
+    padding:14px 18px;border-radius:10px;
+    font-family:'Courier New',monospace;
+    font-size:13px;
+    direction:ltr;text-align:left;
+    overflow-x:auto;
+    border:1px solid #1E293B;
+    margin:10px 0;
+    line-height:1.9;
+  }
+  .url-example .base{color:#94A3B8}
+  .url-example .cloud-name{color:#FCD34D}
+  .url-example .transform{color:#F472B6}
+  .url-example .path{color:#7DD3FC}
+
+  .p1{color:#DC2626;font-weight:800}
+  .p2{color:#EA580C;font-weight:800}
+  .p3{color:#16A34A;font-weight:800}
+  html.dark .p1{color:#F87171}
+  html.dark .p2{color:#FB923C}
+  html.dark .p3{color:#4ADE80}
+
+  .version-tag{
+    display:inline-block;
+    background:linear-gradient(135deg,var(--version),#A78BFA);
+    color:#fff;
+    padding:4px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+    margin-left:8px;
+  }
+
+  .version-card{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:16px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .version-card::before{
+    content:"";
+    position:absolute;
+    top:0;right:0;
+    width:6px;height:100%;
+    background:linear-gradient(180deg,var(--version),#A78BFA);
+  }
+  .version-card:hover{border-color:var(--version);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .version-card h4{
+    font-size:20px;font-weight:800;color:var(--version);
+    margin-bottom:8px;display:flex;align-items:center;gap:10px;
+  }
+  .version-card .v-goal{
+    font-size:14px;color:var(--muted);
+    margin-bottom:12px;font-style:italic;
+  }
+  .version-card ul{margin-top:8px}
+
+  footer{
+    text-align:center;padding:40px 20px 0;
+    color:var(--muted);font-size:14px;
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">🌙</button>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <span class="badge">📋 ملف تخطيط المشروع — النسخة الكاملة</span>
+    <h1>موقع الشيخ محمود أشرف</h1>
+    <p>خطة شاملة مع دعم كامل للصور (Cloudinary)، Dark Mode، محتوى ديناميكي، إعلانات، فيديوهات من أي مصدر، أنيميشن احترافي، وتحسين SEO.</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 1. نظرة عامة -->
+  <section>
+    <h2><span class="num">1</span> نظرة عامة على المشروع</h2>
+    <div class="grid">
+      <div class="card"><div class="icon">⚛️</div><h4>التقنية</h4><p>React + Vite + Tailwind (Static Site)</p></div>
+      <div class="card"><div class="icon">🎨</div><h4>الطابع</h4><p>بسيط، أنيق، إسلامي، بدون تعقيد</p></div>
+      <div class="card"><div class="icon">☁️</div><h4>الصور</h4><p>مستضافة على Cloudinary</p></div>
+      <div class="card"><div class="icon">🌙</div><h4>Dark Mode</h4><p>وضع ليلي كامل بزرار تبديل</p></div>
+      <div class="card"><div class="icon">🔁</div><h4>قابلية التكرار</h4><p>شيخ، كاتب، مدرب جيم، أي حد</p></div>
+      <div class="card"><div class="icon">📱</div><h4>Responsive</h4><p>يدعم كل الأجهزة والشاشات</p></div>
+    </div>
+    <div class="note">
+      <strong>الفكرة الأساسية:</strong> كل حاجة خاصة بالشخص (الاسم، النوع، الصور، الألوان، الروابط، الأذكار، الكاتوجري، الحقول الإضافية) تكون في ملف واحد اسمه <code>sheikhConfig.js</code> — بيتغير حسب الشخص (شيخ، كاتب، مدرب) والتعديل بيتم من مكان واحد.
+    </div>
+  </section>
+
+  <!-- 2. هيكل المشروع -->
+  <section>
+    <h2><span class="num">2</span> هيكل المشروع (File Structure)</h2>
+
+    <div class="tree-wrap">
+<div class="tree"><span class="line"><span class="folder">sheikh-website/</span></span><span class="line">│</span><span class="line">├── <span class="folder">public/</span></span><span class="line">│   ├── <span class="file">favicon.ico</span></span><span class="line">│   ├── <span class="file">manifest.json</span>              <span class="comment">// للـ PWA (المرحلة الجاية)</span></span><span class="line">│   └── <span class="file">robots.txt</span></span><span class="line">│</span><span class="line">├── <span class="folder">src/</span></span><span class="line">│   ├── <span class="folder">data/</span></span><span class="line">│   │   └── <span class="imp">sheikhConfig.js</span>        <span class="comment">// ⭐ الملف الوحيد اللي تعدله</span></span><span class="line">│   │</span><span class="line">│   ├── <span class="folder">components/</span></span><span class="line">│   │   ├── <span class="file">Navbar.jsx</span></span><span class="line">│   │   ├── <span class="file">Hero.jsx</span></span><span class="line">│   │   ├── <span class="file">SocialLinks.jsx</span></span><span class="line">│   │   ├── <span class="file">ThemeToggle.jsx</span></span><span class="line">│   │   ├── <span class="file">AthkarTicker.jsx</span></span><span class="line">│   │   ├── <span class="file">PrayerReminder.jsx</span></span><span class="line">│   │   ├── <span class="file">CategoryCard.jsx</span></span><span class="line">│   │   ├── <span class="file">VideoCard.jsx</span></span><span class="line">│   │   ├── <span class="file">VideoModal.jsx</span>         <span class="comment">// مشغل من أي رابط</span></span><span class="line">│   │   ├── <span class="file">ShareButtons.jsx</span>        <span class="comment">// مشاركة على السوشيال</span></span><span class="line">│   │   ├── <span class="file">VisitorCounter.jsx</span></span><span class="line">│   │   ├── <span class="file">AdSlot.jsx</span>              <span class="comment">// إعلان من API (بعد الباك)</span></span><span class="line">│   │   └── <span class="file">InfoCard.jsx</span>            <span class="comment">// كارت معلومات (education, etc.)</span></span><span class="line">│   │</span><span class="line">│   ├── <span class="folder">pages/</span></span><span class="line">│   │   ├── <span class="file">Home.jsx</span></span><span class="line">│   │   ├── <span class="file">CategoryPage.jsx</span></span><span class="line">│   │   └── <span class="file">SheikhProfile.jsx</span></span><span class="line">│   │</span><span class="line">│   ├── <span class="folder">hooks/</span></span><span class="line">│   │   ├── <span class="file">useAthkar.js</span></span><span class="line">│   │   ├── <span class="file">usePrayerTimes.js</span></span><span class="line">│   │   ├── <span class="file">useVisitorCount.js</span></span><span class="line">│   │   ├── <span class="file">useTheme.js</span></span><span class="line">│   │   └── <span class="file">useAd.js</span>                <span class="comment">// بعد الباك</span></span><span class="line">│   │</span><span class="line">│   ├── <span class="folder">utils/</span></span><span class="line">│   │   ├── <span class="file">videoParser.js</span>          <span class="comment">// يستخرج ID من أي رابط فيديو</span></span><span class="line">│   │   └── <span class="file">seo.js</span>                  <span class="comment">// إعدادات SEO</span></span><span class="line">│   │</span><span class="line">│   ├── <span class="file">App.jsx</span></span><span class="line">│   ├── <span class="file">main.jsx</span></span><span class="line">│   └── <span class="file">index.css</span></span><span class="line">│</span><span class="line">├── <span class="file">index.html</span></span><span class="line">├── <span class="file">package.json</span></span><span class="line">└── <span class="file">vite.config.js</span></span></div>
+    </div>
+  </section>
+
+  <!-- 3. ملف الإعدادات -->
+  <section>
+    <h2><span class="num">3</span> ملف الإعدادات — قلب المشروع</h2>
+    <p>كل حاجة بتتعدل من هنا. الملف ده يدعم أي نوع (شيخ، كاتب، مدرب، غيره):</p>
+<pre><span class="comment">// src/data/sheikhConfig.js</span>
+<span class="key">export const</span> sheikhConfig = {
+  <span class="comment">// ===== نوع الشخص (بيتحكم في التسميات والأيقونات) =====</span>
+  <span class="comment">// "sheikh" | "writer" | "coach" | "teacher" | "other"</span>
+  type: <span class="str">"sheikh"</span>,
+  typeLabel: <span class="str">"الشيخ"</span>,        <span class="comment">// يُعرض قبل الاسم في بعض الأماكن</span>
+
+  <span class="comment">// ===== الهوية =====</span>
+  name: <span class="str">"محمود أشرف"</span>,
+  title: <span class="str">"داعية إسلامي"</span>,
+  bio: <span class="str">"نبذة قصيرة عن الشخص..."</span>,
+  bioLong: <span class="str">"نبذة موسعة تظهر في صفحة about وفي حال عدم وجود كاتوجري..."</span>,
+
+  <span class="comment">// ===== الصور (Cloudinary) =====</span>
+  logo: <span class="str">"https://res.cloudinary.com/YOUR_CLOUD/image/upload/w_200,q_auto,f_auto/logo"</span>,
+  <span class="comment">// لو مفيش لوجو، سيبه فاضي "" والاسم هيظهر بخط شيك بدل اللوجو</span>
+  heroImage: <span class="str">"https://res.cloudinary.com/YOUR_CLOUD/image/upload/w_800,q_auto,f_auto/sheikh"</span>,
+
+  <span class="comment">// ===== معلومات تفصيلية =====</span>
+  yearsInField: <span class="num2">10</span>,           <span class="comment">// بقاله كام سنة</span>
+  fieldLabel: <span class="str">"سنة في الدعوة"</span>,   <span class="comment">// النص (يتغير: "سنة خبرة" للمدرب)</span>
+  education: <span class="str">"كلية الشريعة - جامعة الأزهر"</span>,
+  certificates: [
+    <span class="str">"إجازة في القرآن الكريم"</span>,
+    <span class="str">"شهادة في الفقه الإسلامي"</span>,
+    <span class="str">"دبلومة في الدعوة"</span>,
+  ],
+  location: <span class="str">"مصر - القليوبية"</span>,
+
+  <span class="comment">// ===== حقول إضافية مفتوحة (Key/Value) =====</span>
+  <span class="comment">// تُعرض بنفس ترتيبها وتتنوع حسب كل شخص</span>
+  customFields: [
+    { label: <span class="str">"المذهب الفقهي"</span>,  value: <span class="str">"الحنفي"</span> },
+    { label: <span class="str">"اللغات"</span>,          value: <span class="str">"العربية، الإنجليزية"</span> },
+    { label: <span class="str">"البريد للدروس"</span>,  value: <span class="str">"lessons@example.com"</span> },
+  ],
+
+  <span class="comment">// ===== الألوان =====</span>
+  colors: {
+    primary:    <span class="str">"#1B5E20"</span>,
+    gold:       <span class="str">"#C8A951"</span>,
+    background: <span class="str">"#FAF9F6"</span>,
+    text:       <span class="str">"#1A1A1A"</span>,
+  },
+
+  <span class="comment">// ===== السوشيال ميديا =====</span>
+  social: {
+    tiktok:    <span class="str">"https://tiktok.com/@..."</span>,
+    facebook:  <span class="str">"https://facebook.com/..."</span>,
+    instagram: <span class="str">"https://instagram.com/..."</span>,
+    youtube:   <span class="str">"https://youtube.com/@..."</span>,
+    whatsapp:  <span class="str">"https://wa.me/2010..."</span>,
+    email:     <span class="str">"mailto:sheikh@example.com"</span>,
+  },
+
+  <span class="comment">// ===== نص رسالة المشاركة =====</span>
+  shareMessage: <span class="str">"ادخل استفيد مع {typeLabel} {name}"</span>,
+  <span class="comment">// {typeLabel} و {name} بيتستبدلوا تلقائي من الملف</span>
+
+  <span class="comment">// ===== الأذكار =====</span>
+  <span class="comment">// لو الشخص مش شيخ، سيبها فاضية [] والـ AthkarTicker هيتخفي</span>
+  athkar: [
+    <span class="str">"الحمد لله"</span>,
+    <span class="str">"الله أكبر"</span>,
+    <span class="str">"سبحان الله وبحمده"</span>,
+    <span class="str">"لا إله إلا الله وحده لا شريك له"</span>,
+    <span class="str">"اللهم صل وسلم على نبينا محمد"</span>,
+  ],
+
+  <span class="comment">// ===== الكاتوجري (لحد 15) =====</span>
+  <span class="comment">// لو فاضية []، الصفحة الرئيسية هتعرض نبذة موسعة + رسالة انتظار</span>
+  categories: [
+    {
+      id: <span class="str">"khutub"</span>,
+      name: <span class="str">"خطب الجمعة"</span>,
+      image: <span class="str">"https://res.cloudinary.com/YOUR_CLOUD/image/upload/w_600,h_400,c_fill,q_auto,f_auto/categories/khutub"</span>,
+      videos: [
+        {
+          id: <span class="str">"v1"</span>,
+          title: <span class="str">"خطبة عن الصبر"</span>,
+          <span class="comment">// رابط من أي منصة: يوتيوب، فيسبوك، تيك توك، إنستا، أي حاجة</span>
+          url: <span class="str">"https://www.youtube.com/watch?v=dQw4w9WgXcQ"</span>,
+          thumbnail: <span class="str">""</span>,  <span class="comment">// اختياري — لو فاضي نجيبه تلقائي</span>
+        },
+      ]
+    },
+  ],
+
+  <span class="comment">// ===== إعدادات التوقيت =====</span>
+  settings: {
+    athkarInterval:  <span class="num2">30000</span>,
+    athkarDuration:  <span class="num2">5000</span>,
+    prayerReminderInterval: <span class="num2">600000</span>,
+    adDelay: <span class="num2">3000</span>,              <span class="comment">// الإعلان يظهر بعد 3 ثواني</span>
+    city: <span class="str">"Cairo"</span>,
+    country: <span class="str">"Egypt"</span>,
+  },
+
+  <span class="comment">// ===== SEO =====</span>
+  seo: {
+    siteUrl: <span class="str">"https://sheikh-mahmoud.vercel.app"</span>,
+    keywords: [<span class="str">"الشيخ محمود أشرف"</span>, <span class="str">"داعية إسلامي"</span>, <span class="str">"خطب"</span>],
+    defaultImage: <span class="str">"https://res.cloudinary.com/YOUR_CLOUD/image/upload/w_1200,h_630,c_fill/q_auto/sheikh"</span>,
+  },
+};
+</pre>
+    <div class="ok">
+      <strong>✅ الميزة:</strong> عشان تعمل موقع لشخص تاني، تنسخ المشروع كله وتعدّل الملف ده بس. لو مدرب جيم → غيّر <code>type</code> لـ <code>"coach"</code>، عدّل <code>fieldLabel</code> و <code>education</code> والتصميم الافتراضي هيتأقلم.
+    </div>
+  </section>
+
+  <!-- 4. الصور والاستضافة -->
+  <section>
+    <h2><span class="num">4</span> الصور والاستضافة — Cloudinary ☁️</h2>
+
+    <div class="cloud-box">
+      <strong>ليه Cloudinary؟</strong> بتخلي الموقع خفيف، وبتحسّن الصور تلقائي، وبتوصل بسرعة من أي مكان. مجانية لـ 25GB تخزين + 10GB باندويدث شهرياً.
+    </div>
+
+    <h3>📝 خطوات التسجيل والرفع</h3>
+    <div class="steps">
+      <div class="step-item">
+        <h5>إنشاء الحساب</h5>
+        <p>سجّل على <code>cloudinary.com/users/register_free</code> — مجاني وبدون بطاقة ائتمان.</p>
+      </div>
+      <div class="step-item">
+        <h5>الدخول على Media Library</h5>
+        <p>من القايمة اللي على الشمال، اختار <strong>Media Library</strong>.</p>
+      </div>
+      <div class="step-item">
+        <h5>رفع الصور</h5>
+        <p>اضغط <strong>Upload</strong>، اسحب وأفلت كل صورك. نظّم في فولدرات.</p>
+      </div>
+      <div class="step-item">
+        <h5>نسخ الرابط (Public ID)</h5>
+        <p>دوس على الصورة → انسخ الـ <strong>Public ID</strong> بتاعها.</p>
+      </div>
+      <div class="step-item">
+        <h5>بناء الرابط</h5>
+        <p>الصق الـ Public ID في القالب وحطه في <code>sheikhConfig.js</code>.</p>
+      </div>
+    </div>
+
+    <h3>🔗 شكل الرابط النهائي</h3>
+    <div class="url-example">
+<span class="base">https://res.cloudinary.com/</span><span class="cloud-name">YOUR_CLOUD_NAME</span><span class="base">/image/upload/</span><span class="transform">w_600,q_auto,f_auto</span><span class="base">/</span><span class="path">categories/khutub</span>
+    </div>
+
+    <h3>⚡ أهم معاملات التحسين</h3>
+    <table>
+      <thead>
+        <tr><th>الرمز</th><th>المعنى</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>w_600</code></td><td>عرض 600 بكسل</td></tr>
+        <tr><td><code>h_400</code></td><td>ارتفاع 400 بكسل</td></tr>
+        <tr><td><code>q_auto</code></td><td>جودة تلقائية</td></tr>
+        <tr><td><code>f_auto</code></td><td>صيغة تلقائية (WebP)</td></tr>
+        <tr><td><code>c_fill</code></td><td>قص وملء</td></tr>
+        <tr><td><code>g_face</code></td><td>تركيز على الوجه</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. Dark Mode -->
+  <section>
+    <h2><span class="num">5</span> الوضع الليلي والنهاري (Dark/Light Mode) 🌙☀️</h2>
+
+    <div class="ok">
+      <strong>✅ موجود في المشروع:</strong> الزائر يبدّل بين الوضعين، واختياره بيتحفظ في <code>localStorage</code>.
+    </div>
+
+    <h3>🎯 إزاي بيشتغل؟</h3>
+    <ul>
+      <li>بنستخدم <strong>CSS Variables</strong> — كل الألوان معرّفة في <code>:root</code>.</li>
+      <li>بنضيف كلاس <code>.dark</code> على عنصر <code>&lt;html&gt;</code> للتبديل.</li>
+      <li>الاختيار بيتحفظ في <code>localStorage</code>.</li>
+      <li>لو مفيش اختيار محفوظ، بنتبع إعدادات جهاز الزائر.</li>
+    </ul>
+
+    <h3>💻 كود مختصر</h3>
+<pre><span class="comment">// hooks/useTheme.js</span>
+<span class="key">import</span> { useEffect, useState } <span class="key">from</span> <span class="str">'react'</span>;
+
+<span class="key">export const</span> useTheme = () =&gt; {
+  <span class="key">const</span> [theme, setTheme] = useState(() =&gt; {
+    <span class="key">const</span> saved = localStorage.getItem(<span class="str">'theme'</span>);
+    <span class="key">if</span> (saved) <span class="key">return</span> saved;
+    <span class="key">return</span> window.matchMedia(<span class="str">'(prefers-color-scheme: dark)'</span>).matches
+      ? <span class="str">'dark'</span> : <span class="str">'light'</span>;
+  });
+
+  useEffect(() =&gt; {
+    document.documentElement.classList.toggle(<span class="str">'dark'</span>, theme === <span class="str">'dark'</span>);
+    localStorage.setItem(<span class="str">'theme'</span>, theme);
+  }, [theme]);
+
+  <span class="key">return</span> { theme, toggle: () =&gt; setTheme(t =&gt; t === <span class="str">'dark'</span> ? <span class="str">'light'</span> : <span class="str">'dark'</span>) };
+};
+</pre>
+  </section>
+
+  <!-- 6. الصفحات -->
+  <section>
+    <h2><span class="num">6</span> الصفحات (3 صفحات فقط)</h2>
+    <table>
+      <thead>
+        <tr><th>الصفحة</th><th>المسار</th><th>المحتوى</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>الرئيسية</td>
+          <td><code>/</code></td>
+          <td>هيرو + لوجو + صورة + سوشيال + شبكة الكاتوجري (أو fallback لو مفيش)</td>
+        </tr>
+        <tr>
+          <td>الكاتوجري</td>
+          <td><code>/category/:id</code></td>
+          <td>صورة كبيرة + اسم الكاتوجري + قائمة فيديوهات</td>
+        </tr>
+        <tr>
+          <td>ملف الشخص</td>
+          <td><code>/about</code></td>
+          <td>نبذة موسعة + معلومات تفصيلية + حقول مفتوحة + عداد الزوار</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 7. المميزات التفصيلية -->
+  <section>
+    <h2><span class="num">7</span> المميزات التفصيلية</h2>
+
+    <h3>🕌 1) نظام الأذكار (Athkar Ticker)</h3>
+    <ul>
+      <li>يظهر فوق الصفحة في شريط ثابت.</li>
+      <li>كل <strong>30 ثانية</strong> يظهر ذكر لمدة <strong>5 ثواني</strong> ثم يختفي.</li>
+      <li>التنقل دائري بالترتيب.</li>
+      <li><strong>لو الشخص مش شيخ</strong> (كاتب/مدرب) وسيبت <code>athkar: []</code> → الشريط يتخفي تماماً.</li>
+    </ul>
+
+    <h3>🟥 2) تذكير الصلاة (Prayer Reminder)</h3>
+    <div class="flow">
+      <span class="step">جلب مواعيد الصلاة (Aladhan API)</span>
+      <span class="arrow">→</span>
+      <span class="step">مراقبة الوقت كل دقيقة</span>
+      <span class="arrow">→</span>
+      <span class="step">بعد دخول الوقت بـ 30 دقيقة</span>
+      <span class="arrow">→</span>
+      <span class="step">إظهار التنبيه</span>
+      <span class="arrow">→</span>
+      <span class="step">زرار "أه صليت"</span>
+    </div>
+    <p><strong>ملاحظة:</strong> لو الشخص مش شيخ، ممكن نخليها اختيارية من <code>settings.prayerReminder: true/false</code>.</p>
+
+    <h3>👁️ 3) عداد زوار الشخص</h3>
+    <table>
+      <thead>
+        <tr><th>الحل</th><th>المميزات</th><th>العيوب</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="p1">مؤقت:</span> localStorage</td><td>سهل، بدون Backend</td><td>مش عداد حقيقي</td></tr>
+        <tr><td><span class="p2">متوسط:</span> CounterAPI</td><td>مجاني، عداد حقيقي</td><td>ممكن يتقفل</td></tr>
+        <tr><td><span class="p3">الأفضل:</span> Firebase</td><td>مجاني، موثوق</td><td>محتاج إعداد</td></tr>
+      </tbody>
+    </table>
+
+    <h3>📢 4) الإعلانات (AdSlot) — رؤية كاملة</h3>
+
+    <div class="version-box">
+      <strong>⏳ حالياً:</strong> المكوّن موجود لكن معطّل — بيعرض صندوق فاضي مخفي. لما الباك يخلص، بيتفعّل تلقائي.
+    </div>
+
+    <p><strong>السلوك المطلوب بعد ربط الـ API:</strong></p>
+    <div class="flow">
+      <span class="step">الزائر يدخل الموقع</span>
+      <span class="arrow">→</span>
+      <span class="step">بعد 3 ثواني</span>
+      <span class="arrow">→</span>
+      <span class="step">جلب الإعلان من API</span>
+      <span class="arrow">→</span>
+      <span class="step">إظهار Overlay بخلفية Blur</span>
+      <span class="arrow">→</span>
+      <span class="step">صور + عنوان + زرين</span>
+    </div>
+
+    <p><strong>تفاصيل البوكس:</strong></p>
+    <ul>
+      <li>خلفية الموقع كلها بتبقى <strong>Blur</strong> (ضباب).</li>
+      <li>في وسط الشاشة بوكس الإعلان: <strong>صورة + عنوان فقط</strong>.</li>
+      <li>زرين فقط:
+        <ul>
+          <li><strong>زر كنسل</strong> → يقفل الإعلان ويرجع الموقع طبيعي.</li>
+          <li><strong>زر ادخل</strong> → يفتح رابط الإعلان في تاب جديد.</li>
+        </ul>
+      </li>
+      <li>لو الزائر ضغط في أي مكان تاني على الشاشة (خارج البوكس) → <strong>مفيش حاجة تحصل</strong>.</li>
+      <li>الإعلان بيتحفظ في <code>sessionStorage</code> عشان ميتكررش في نفس الجلسة.</li>
+    </ul>
+
+    <div class="warn">
+      <strong>مهم:</strong> الإعلان <strong>Public</strong> من الـ API (نفس الإعلان لكل الزوار) مش Local.
+    </div>
+
+    <h3>🎬 5) مشغل الفيديو — يدعم أي منصة</h3>
+
+    <div class="version-box">
+      <strong>مهم:</strong> مش شرط يوتيوب بس — أي رابط فيديو من (يوتيوب، فيسبوك، تيك توك، إنستجرام) يشتغل.
+    </div>
+
+    <p><strong>فكرة الـ <code>videoParser.js</code>:</strong></p>
+    <ul>
+      <li>بتاخد الرابط المدخل وتتعرف على المنصة تلقائي (regex).</li>
+      <li>تستخرج الـ ID وتحوّله لرابط embed مناسب.</li>
+      <li>لو مش قادر تتعرف على المنصة → تفتح الرابط في iframe مباشر.</li>
+    </ul>
+
+<pre><span class="comment">// utils/videoParser.js</span>
+<span class="key">export const</span> parseVideoUrl = (url) =&gt; {
+  <span class="key">const</span> patterns = {
+    youtube: <span class="str">/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]+)/</span>,
+    facebook: <span class="str">/facebook\.com\/.+\/videos\/(\d+)/</span>,
+    tiktok: <span class="str">/tiktok\.com\/@[^/]+\/video\/(\d+)/</span>,
+    instagram: <span class="str">/instagram\.com\/(?:p|reel)\/([\w-]+)/</span>,
+  };
+
+  <span class="key">for</span> (<span class="key">const</span> [platform, regex] <span class="key">of</span> Object.entries(patterns)) {
+    <span class="key">const</span> match = url.match(regex);
+    <span class="key">if</span> (match) <span class="key">return</span> { platform, id: match[<span class="num2">1</span>] };
+  }
+
+  <span class="key">return</span> { platform: <span class="str">'other'</span>, id: <span class="key">null</span> };
+};
+</pre>
+
+    <p><strong>شكل صفحة الكاتوجري بعد الدخول على فيديو:</strong></p>
+    <ul>
+      <li><strong>اسم الكاتوجري</strong> فوق بخط كبير وواضح.</li>
+      <li>تحته <strong>بوكس الفيديو</strong> (مشغل من أي مصدر) + <strong>عنوان الفيديو</strong> تحته في نفس البوكس.</li>
+      <li>تحت الفيديو، باقي فيديوهات الكاتوجري بترتيبها (صورة مصغرة + عنوان).</li>
+      <li>زرار <strong>السابق</strong> يظهر لو في فيديو قبل الحالي.</li>
+      <li>زرار <strong>التالي</strong> يظهر لو في فيديو بعد الحالي.</li>
+      <li>كل ده جوّه الموقع — <strong>مفيش مغادرة للصفحة</strong>.</li>
+    </ul>
+
+    <h3>🔗 6) اللوجو + صورة الشخص فوق</h3>
+    <ul>
+      <li><strong>اللوجو</strong> صغير في الـ Navbar.</li>
+      <li><strong>صورة الشخص</strong> كبيرة في الهيرو (مع <code>g_face</code> عشان التركيز على الوجه).</li>
+      <li>لو مفيش لوجو (<code>logo: ""</code>) → الاسم يظهر بخط شيك أنيق كأنه لوجو.</li>
+      <li>بجانب الصورة: البايو + الاسم + أيقونات السوشيال ميديا.</li>
+      <li>الخلفية <strong>لون متدرج</strong> مش صورة (أخف وأسرع).</li>
+    </ul>
+
+    <h3>📭 7) Fallback لما مفيش كاتوجري</h3>
+
+    <div class="note">
+      <strong>متى يظهر؟</strong> لما <code>categories</code> تكون فاضية <code>[]</code>.
+    </div>
+
+    <p><strong>اللي بيتعرض بدل شبكة الكاتوجري:</strong></p>
+    <ul>
+      <li>نبذة موسعة عن الشخص (<code>bioLong</code>).</li>
+      <li>كارت معلومات مختصر: التعليم + سنوات الخبرة + الشهادات + المكان.</li>
+      <li>كل الـ <code>customFields</code> بتظهر بشكل شيك.</li>
+      <li>رسالة أنيقة تحت: <em>"تابع كل جديد، قريباً المزيد على الموقع"</em>.</li>
+      <li>أزرار السوشيال ميديا كبيرة وواضحة.</li>
+    </ul>
+
+    <h3>📤 8) Share Buttons — تفصيل كامل</h3>
+
+    <p><strong>إيه اللي بيحصل لما الزائر يدوس "مشاركة"؟</strong></p>
+
+    <div class="flow">
+      <span class="step">دوس على زرار المشاركة</span>
+      <span class="arrow">→</span>
+      <span class="step">تفتح قائمة (واتساب، فيسبوك، تيليجرام، X، نسخ الرابط)</span>
+      <span class="arrow">→</span>
+      <span class="step">يختار المنصة</span>
+      <span class="arrow">→</span>
+      <span class="step">تفتح المنصة برسالة جاهزة + رابط الموقع</span>
+    </div>
+
+    <p><strong>الرسالة الجاهزة</strong> بتتبني من الـ config:</p>
+<pre><span class="comment">// في الكود</span>
+<span class="key">const</span> message = sheikhConfig.shareMessage
+  .replace(<span class="str">'{typeLabel}'</span>, sheikhConfig.typeLabel)
+  .replace(<span class="str">'{name}'</span>, sheikhConfig.name);
+
+<span class="comment">// مثال النتيجة: "ادخل استفيد مع الشيخ محمود أشرف"</span>
+<span class="comment">// لو مدرب: "ادخل استفيد مع المدرب أحمد محمد"</span>
+</pre>
+
+    <p><strong>رابط واتساب:</strong></p>
+    <div class="url-example">
+https://wa.me/?text=<span class="path">[message]</span>%20<span class="path">[siteUrl]</span>
+    </div>
+
+    <p><strong>رابط فيسبوك:</strong></p>
+    <div class="url-example">
+https://www.facebook.com/sharer/sharer.php?u=<span class="path">[siteUrl]</span>
+    </div>
+
+    <p><strong>رابط تيليجرام:</strong></p>
+    <div class="url-example">
+https://t.me/share/url?url=<span class="path">[siteUrl]</span>&text=<span class="path">[message]</span>
+    </div>
+
+    <h3>🎞️ 9) Animations — بإبداع مش بسيط</h3>
+
+    <div class="version-box">
+      <strong>مكتبة:</strong> Framer Motion + Lottie (اختياري) + CSS Animations.
+    </div>
+
+    <p><strong>أفكار الأنيميشن المقترحة:</strong></p>
+    <table>
+      <thead>
+        <tr><th>العنصر</th><th>الحركة</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>صفحة تُفتح</td><td>Fade + Slide ناعم</td></tr>
+        <tr><td>كروت الكاتوجري</td><td>Stagger — كل كارت بيظهر بعد التاني بـ 0.1s</td></tr>
+        <tr><td>زرار السوشيال</td><td>Bounce + Rotate خفيف عند الـ hover</td></tr>
+        <tr><td>شريط الأذكار</td><td>Slide من فوق + Fade Out</td></tr>
+        <tr><td>Hero</td><td>Parallax خفيف عند التمرير</td></tr>
+        <tr><td>الانتقال بين الصفحات</td><td>Page Transition ناعم</td></tr>
+        <tr><td>اللوجو</td><td>Pulse خفيف باستمرار</td></tr>
+        <tr><td>زرار المشاركة</td><td>Ripple effect عند الضغط</td></tr>
+        <tr><td>عند دخول قسم جديد</td><td>Fade + Slide Up</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>مثال كود بسيط:</strong></p>
+<pre><span class="comment">// components/CategoryCard.jsx</span>
+<span class="key">import</span> { motion } <span class="key">from</span> <span class="str">'framer-motion'</span>;
+
+&lt;motion.div
+  initial={{ opacity: <span class="num2">0</span>, y: <span class="num2">30</span> }}
+  whileInView={{ opacity: <span class="num2">1</span>, y: <span class="num2">0</span> }}
+  viewport={{ once: <span class="key">true</span> }}
+  transition={{ duration: <span class="num2">0.5</span>, delay: index * <span class="num2">0.1</span> }}
+  whileHover={{ scale: <span class="num2">1.03</span> }}
+&gt;
+  ...
+&lt;/motion.div&gt;
+</pre>
+
+    <h3>📊 10) SEO — الهدف: الأول على جوجل</h3>
+
+    <div class="version-box">
+      <strong>الهدف:</strong> لما حد يبحث عن اسم الشيخ/المدرب على جوجل، موقعك يظهر أول واحد — حتى على دومين Vercel المجاني.
+    </div>
+
+    <p><strong>اللي هنعمله:</strong></p>
+    <ul>
+      <li><strong>Meta tags</strong> كاملة: title, description, keywords, author.</li>
+      <li><strong>Open Graph</strong> لمشاركة شكل حلو على السوشيال.</li>
+      <li><strong>Twitter Card</strong>.</li>
+      <li><strong>Sitemap.xml</strong> في <code>public/</code>.</li>
+      <li><strong>robots.txt</strong> للسماح لجوجل بالدخول.</li>
+      <li><strong>Schema.org markup</strong> (Person) — ده اللي بيخلي جوجل يفهم مين الشيخ.</li>
+      <li>ربط الموقع بـ <strong>Google Search Console</strong>.</li>
+      <li>إضافة رابط الموقع في السوشيال ميديا بتاعت الشيخ.</li>
+    </ul>
+
+    <p><strong>مثال على Meta tags في <code>index.html</code>:</strong></p>
+<pre>&lt;meta name=<span class="str">"description"</span> content=<span class="str">"الموقع الرسمي للشيخ محمود أشرف..."</span> /&gt;
+&lt;meta name=<span class="str">"keywords"</span> content=<span class="str">"الشيخ محمود أشرف, داعية, خطب"</span> /&gt;
+
+<span class="comment">&lt;!-- Open Graph --&gt;</span>
+&lt;meta property=<span class="str">"og:title"</span> content=<span class="str">"الشيخ محمود أشرف"</span> /&gt;
+&lt;meta property=<span class="str">"og:description"</span> content=<span class="str">"..."</span> /&gt;
+&lt;meta property=<span class="str">"og:image"</span> content=<span class="str">"[رابط صورة من Cloudinary]"</span> /&gt;
+&lt;meta property=<span class="str">"og:type"</span> content=<span class="str">"profile"</span> /&gt;
+
+<span class="comment">&lt;!-- Schema.org --&gt;</span>
+&lt;script type=<span class="str">"application/ld+json"</span>&gt;
+{
+  <span class="str">"@context"</span>: <span class="str">"https://schema.org"</span>,
+  <span class="str">"@type"</span>: <span class="str">"Person"</span>,
+  <span class="str">"name"</span>: <span class="str">"الشيخ محمود أشرف"</span>,
+  <span class="str">"jobTitle"</span>: <span class="str">"داعية إسلامي"</span>,
+  <span class="str">"image"</span>: <span class="str">"[رابط الصورة]"</span>
+}
+&lt;/script&gt;
+</pre>
+
+    <div class="note">
+      <strong>💡 نصيحة لتحسين الترتيب:</strong> بعد رفع الموقع، اعمل حساب في <strong>Google Search Console</strong> وضيف الموقع، وبعدين اعمل <code>sitemap</code> و<code>robots.txt</code>. جوجل هيبدأ يفهم الموقع ويتصدره للاسم بعد أسبوع لشهر تقريباً.
+    </div>
+  </section>
+
+  <!-- 8. خطة الإصدارات -->
+  <section>
+    <h2><span class="num">8</span> خطة الإصدارات (Versions Plan) 🚀</h2>
+
+    <div class="version-card">
+      <h4>🚀 النسخة 1.0 <span class="version-tag">أساسية</span></h4>
+      <p class="v-goal">الهدف: موقع كامل شغّال ينشر على Vercel.</p>
+      <ul>
+        <li>إعداد React + Vite + Tailwind.</li>
+        <li>ملف <code>sheikhConfig.js</code> بكل الحقول.</li>
+        <li>حساب Cloudinary + رفع الصور.</li>
+        <li>Navbar + Hero + Social Links.</li>
+        <li>شبكة الكاتوجري + Fallback لما مفيش.</li>
+        <li>صفحة الكاتوجري + VideoPlayer.</li>
+        <li>صفحة ملف الشخص.</li>
+        <li>نظام الأذكار + تذكير الصلاة.</li>
+        <li>عداد الزوار (localStorage مؤقتاً).</li>
+        <li>Dark/Light Mode.</li>
+        <li>Responsive كامل.</li>
+      </ul>
+    </div>
+
+    <div class="version-card">
+      <h4>✨ النسخة 1.1 <span class="version-tag">Animations</span></h4>
+      <p class="v-goal">الهدف: تحويل الموقع لتجربة بصرية ممتعة.</p>
+      <ul>
+        <li>تنصيب Framer Motion.</li>
+        <li>Page transitions بين الصفحات.</li>
+        <li>Stagger animations للكروت.</li>
+        <li>Hero animations (Fade, Parallax).</li>
+        <li>Hover effects على الأزرار والكروت.</li>
+        <li>Loading skeleton animations.</li>
+        <li>Scroll reveal animations.</li>
+      </ul>
+    </div>
+
+    <div class="version-card">
+      <h4>📤 النسخة 1.2 <span class="version-tag">Share + SEO</span></h4>
+      <p class="v-goal">الهدف: زيادة الانتشار والظهور على جوجل.</p>
+      <ul>
+        <li>مكوّن ShareButtons كامل.</li>
+        <li>رسائل مشاركة جاهزة ديناميكية.</li>
+        <li>Meta tags + Open Graph + Twitter Card.</li>
+        <li>Schema.org markup.</li>
+        <li>sitemap.xml + robots.txt.</li>
+        <li>ربط Google Search Console.</li>
+      </ul>
+    </div>
+
+    <div class="version-card">
+      <h4>📱 النسخة 1.3 <span class="version-tag">PWA</span></h4>
+      <p class="v-goal">الهدف: الموقع يشتغل كتطبيق على الموبايل.</p>
+      <ul>
+        <li>إضافة <code>manifest.json</code>.</li>
+        <li>Service Worker للتخزين المؤقت.</li>
+        <li>Install prompt للزوار.</li>
+        <li>Offline mode (الصفحات المحفوظة).</li>
+        <li>أيقونات الموبايل.</li>
+      </ul>
+    </div>
+
+    <div class="version-card">
+      <h4>🔌 النسخة 2.0 <span class="version-tag">Backend</span></h4>
+      <p class="v-goal">الهدف: ربط الباك ولوحة تحكم حقيقية.</p>
+      <ul>
+        <li>ربط API الإعلانات (يشتغل تلقائي).</li>
+        <li>عداد زوار حقيقي (Firebase).</li>
+        <li>لوحة تحكم للشخص يضيف محتوى.</li>
+        <li>رفع الصور مباشرة من اللوحة.</li>
+        <li>Public API للبيانات.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9. خطة التنفيذ -->
+  <section>
+    <h2><span class="num">9</span> خطة التنفيذ — بالترتيب</h2>
+
+    <h3>🔴 المرحلة الأولى — الأساسيات (P1) — نسخة 1.0</h3>
+    <ul>
+      <li>إنشاء مشروع React + Vite.</li>
+      <li>إعداد Tailwind CSS + الخطوط العربية.</li>
+      <li>حساب Cloudinary + رفع كل الصور.</li>
+      <li>إنشاء <code>sheikhConfig.js</code> بكل الحقول (type, yearsInField, customFields...).</li>
+      <li>إنشاء <code>useTheme.js</code> + <code>ThemeToggle.jsx</code>.</li>
+      <li>Navbar + Hero + Social Links + InfoCards.</li>
+      <li>صفحة الرئيسية + شبكة الكاتوجري + Fallback.</li>
+    </ul>
+
+    <h3>🟠 المرحلة الثانية — التفاعل (P2) — نسخة 1.0</h3>
+    <ul>
+      <li>صفحة الكاتوجري + قائمة الفيديوهات.</li>
+      <li>مكوّن VideoModal + <code>videoParser.js</code>.</li>
+      <li>أزرار السابق/التالي في صفحة الفيديو.</li>
+      <li>نظام الأذكار (AthkarTicker).</li>
+      <li>صفحة ملف الشخص + عداد الزوار.</li>
+    </ul>
+
+    <h3>🟢 المرحلة الثالثة — التحسينات (P3) — نسخة 1.1 → 1.2</h3>
+    <ul>
+      <li>تذكير الصلاة + Aladhan API.</li>
+      <li>Framer Motion animations كاملة.</li>
+      <li>ShareButtons كامل.</li>
+      <li>SEO (Meta + Schema + Sitemap).</li>
+      <li>ربط Google Search Console.</li>
+    </ul>
+
+    <h3>🔵 المرحلة الرابعة — PWA (P4) — نسخة 1.3</h3>
+    <ul>
+      <li>manifest.json + Service Worker.</li>
+      <li>Install prompt.</li>
+      <li>Offline mode.</li>
+    </ul>
+
+    <h3>🟣 المرحلة الخامسة — الباك (P5) — نسخة 2.0</h3>
+    <ul>
+      <li>AdSlot مع API حقيقي.</li>
+      <li>عداد زوار Firebase.</li>
+      <li>لوحة تحكم.</li>
+    </ul>
+  </section>
+
+  <!-- 10. Checklist -->
+  <section>
+    <h2><span class="num">10</span> ملخص سريع — Checklist</h2>
+    <table>
+      <thead>
+        <tr><th>الميزة</th><th>الإصدار</th><th>الأولوية</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ملف إعدادات موحّد (type + كل الحقول)</td><td>1.0</td><td class="p1">P1</td></tr>
+        <tr><td>Cloudinary + رفع الصور</td><td>1.0</td><td class="p1">P1</td></tr>
+        <tr><td>لوجو + صورة + سوشيال</td><td>1.0</td><td class="p1">P1</td></tr>
+        <tr><td>كاتوجري + Fallback ذكي</td><td>1.0</td><td class="p1">P1</td></tr>
+        <tr><td>Dark/Light Mode</td><td>1.0</td><td class="p1">P1</td></tr>
+        <tr><td>VideoPlayer يدعم كل المنصات</td><td>1.0</td><td class="p2">P2</td></tr>
+        <tr><td>نظام الأذكار</td><td>1.0</td><td class="p2">P2</td></tr>
+        <tr><td>عداد الزوار (مؤقت)</td><td>1.0</td><td class="p2">P2</td></tr>
+        <tr><td>تذكير الصلاة</td><td>1.1</td><td class="p3">P3</td></tr>
+        <tr><td>Animations (Framer Motion)</td><td>1.1</td><td class="p3">P3</td></tr>
+        <tr><td>Share Buttons كامل</td><td>1.2</td><td class="p3">P3</td></tr>
+        <tr><td>SEO + Schema + Sitemap</td><td>1.2</td><td class="p3">P3</td></tr>
+        <tr><td>PWA</td><td>1.3</td><td>P4</td></tr>
+        <tr><td>AdSlot + Backend</td><td>2.0</td><td>P5</td></tr>
+        <tr><td>عداد زوار حقيقي (Firebase)</td><td>2.0</td><td>P5</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    ✦ خطوة البداية: <code>npm create vite@latest sheikh-website -- --template react</code> ✦
+    <br>بالتوفيق يا صديقي 🤍
+  </footer>
+
+</div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = saved || (prefersDark ? 'dark' : 'light');
+
+  if (initial === 'dark') {
+    html.classList.add('dark');
+    toggle.textContent = '☀️';
+  }
+
+  toggle.addEventListener('click', () => {
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    toggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
+</body>
+</html>

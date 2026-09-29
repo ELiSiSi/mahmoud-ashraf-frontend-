@@ -1,0 +1,865 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Qahiri&family=Tajawal:wght@400;500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #F8F6F1;
+    --card: #FFFFFF;
+    --text: #0F172A;
+    --muted: #64748B;
+    --border: #E5E0D5;
+
+    --primary: #0F2E5C;
+    --primary-light: #1E4A8E;
+    --primary-lighter: #E8EEF7;
+
+    --gold: #C6A15B;
+    --gold-light: #E5CC97;
+    --gold-deep: #8E6A2D;
+    --gold-bg: #FBF7EE;
+
+    --navy-950: #081529;
+    --navy-900: #0B1D36;
+    --navy-800: #0F2E5C;
+    --navy-700: #173E73;
+
+    --gradient-hero: radial-gradient(circle at 15% 20%, rgba(229,204,151,.16), transparent 28%),
+                     radial-gradient(circle at 85% 15%, rgba(79,127,189,.20), transparent 32%),
+                     linear-gradient(135deg, #07162B 0%, #0F2E5C 48%, #0B2345 100%);
+    --gradient-gold: linear-gradient(135deg, #8E6A2D 0%, #C6A15B 35%, #E5CC97 50%, #C6A15B 72%, #8E6A2D 100%);
+    --shadow-soft: 0 12px 40px rgba(15,46,92,.08);
+    --shadow-premium: 0 24px 70px rgba(8,21,41,.14);
+  }
+
+  .dark {
+    --bg: #060D1F;
+    --card: #0F1B33;
+    --text: #E2E8F0;
+    --muted: #8FA3B8;
+    --border: #1E3A5F;
+
+    --primary: #60A5FA;
+    --primary-light: #3B82F6;
+    --primary-lighter: #1E3A5F;
+
+    --gold: #D6B35D;
+    --gold-light: #F2DEAE;
+    --gold-deep: #A98537;
+    --gold-bg: #171B25;
+
+    --navy-950: #020814;
+    --navy-900: #061224;
+    --navy-800: #0B1D36;
+    --navy-700: #15355E;
+
+    --gradient-hero: radial-gradient(circle at 15% 20%, rgba(214,179,93,.12), transparent 28%),
+                     radial-gradient(circle at 85% 10%, rgba(96,165,250,.10), transparent 32%),
+                     linear-gradient(135deg, #030A15 0%, #0B1D36 48%, #071326 100%);
+    --gradient-gold: linear-gradient(135deg, #8A692D 0%, #D6B35D 35%, #F2DEAE 50%, #D6B35D 72%, #8A692D 100%);
+    --shadow-soft: 0 14px 40px rgba(0,0,0,.20);
+    --shadow-premium: 0 28px 80px rgba(0,0,0,.35);
+  }
+
+  html {
+    @apply font-cairo bg-background text-text transition-colors duration-300;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text transition-colors duration-300;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(198,161,91,.045), transparent 24%),
+      radial-gradient(circle at 100% 18%, rgba(15,46,92,.035), transparent 26%);
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  /* ============================================================
+     Global layout
+     ============================================================ */
+  .app-container {
+    @apply min-h-screen flex flex-col font-cairo bg-background text-text transition-colors duration-300;
+  }
+  .main-content {
+    @apply flex-grow;
+  }
+
+  /* ============================================================
+     Footer
+     ============================================================ */
+  .footer-container {
+    @apply bg-primary text-white py-12 border-t-2 border-gold relative overflow-hidden;
+  }
+  .footer-pattern {
+    @apply absolute inset-0 z-0 opacity-5;
+  }
+  .footer-content {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center;
+  }
+  .footer-title {
+    @apply font-qahiri text-5xl md:text-6xl font-bold mb-2 drop-shadow-md tracking-wide;
+  }
+  .footer-subtitle {
+    @apply text-gold-light text-lg mb-6;
+  }
+  .footer-copyright {
+    @apply text-gold-light opacity-70 text-sm;
+  }
+
+  /* ============================================================
+     Social Links
+     ============================================================ */
+  .social-links-footer {
+    @apply flex gap-4 flex-wrap justify-center;
+  }
+  .social-link-footer {
+    @apply text-gold-light hover:text-white transition-colors;
+  }
+  .social-links-hero {
+    @apply flex gap-4 flex-wrap;
+  }
+  .social-link-hero {
+    @apply w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white border-2 border-gold-light transition-colors shadow-lg;
+  }
+  .social-link-hero:hover {
+    @apply bg-gold-light;
+    color: var(--navy-950);
+  }
+
+  .social-links-profile {
+    @apply flex gap-4 flex-wrap justify-center;
+  }
+  .social-link-profile {
+    @apply w-12 h-12 flex items-center justify-center rounded-full transition-colors shadow-sm;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+  }
+  .dark .social-link-profile {
+    background: color-mix(in srgb, var(--gold-light) 10%, transparent);
+    color: var(--gold-light);
+  }
+  .social-link-profile:hover {
+    background: var(--gold-light);
+    color: var(--primary);
+  }
+  .dark .social-link-profile:hover {
+    color: var(--navy-950);
+  }
+
+  /* ============================================================
+     Header & Navbar
+     ============================================================ */
+  .header-nav {
+    @apply sticky top-0 z-50 transition-colors duration-300;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid color-mix(in srgb, var(--gold) 26%, var(--border));
+    box-shadow: 0 10px 30px rgba(8,21,41,.05);
+  }
+  .header-nav-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .header-nav-content {
+    @apply flex justify-between items-center h-[76px] md:h-[82px];
+  }
+  .header-logo-wrapper {
+    @apply flex-shrink-0 flex items-center gap-3;
+  }
+  .header-logo-link {
+    @apply flex items-center gap-2;
+  }
+  .header-logo-text {
+    @apply text-4xl md:text-5xl font-qahiri font-bold transform group-hover:scale-[1.03] transition-all pb-2 tracking-wide;
+    color: var(--primary);
+    text-shadow: 0 7px 20px rgba(15,46,92,.10);
+  }
+
+  .dark .header-logo-text {
+    color: var(--gold-light);
+    text-shadow: 0 7px 24px rgba(214,179,93,.14);
+  }
+  .header-desktop-menu {
+    @apply hidden md:flex items-center space-x-10 space-x-reverse;
+  }
+  .header-nav-link {
+    @apply text-lg text-text font-bold transition-all relative pb-2;
+  }
+  .header-nav-link:hover, .header-nav-link.active {
+    color: var(--primary);
+  }
+  .header-nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 rounded-full transition-all duration-300;
+    background: var(--primary);
+  }
+  .dark .header-nav-link::after {
+    background: var(--gold-light);
+  }
+  .header-nav-link:hover::after, .header-nav-link.active::after {
+    @apply w-full;
+  }
+  .header-mobile-menu-btn {
+    @apply md:hidden flex items-center gap-4;
+  }
+  .header-mobile-dropdown {
+    @apply md:hidden bg-card border-b border-border shadow-lg absolute w-full z-40;
+  }
+
+  /* ============================================================
+     Theme Toggle
+     ============================================================ */
+  .theme-toggle-btn {
+    @apply p-2 rounded-full hover:bg-black hover:bg-opacity-5 dark:hover:bg-white dark:hover:bg-opacity-10 transition-colors text-text hover:text-primary;
+  }
+
+  /* ============================================================
+     Athkar Toast
+     ============================================================ */
+  .athkar-toast-wrapper {
+    @apply fixed top-24 right-4 md:right-8 z-[100] max-w-sm pointer-events-none;
+  }
+  .athkar-toast-content {
+    @apply bg-white dark:bg-card border-r-4 border-gold shadow-2xl rounded-l-xl p-4 md:p-6 flex items-center gap-4 relative overflow-hidden pointer-events-auto;
+  }
+  .athkar-toast-text {
+    @apply text-primary dark:text-gold-light font-bold text-2xl md:text-3xl font-amiri leading-relaxed;
+  }
+
+  /* ============================================================
+     Prayer Reminder
+     ============================================================ */
+  .prayer-modal-wrapper {
+    @apply fixed top-24 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md;
+  }
+  .prayer-modal-content {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gold p-6 text-center;
+  }
+  .prayer-modal-icon {
+    @apply w-12 h-12 bg-gold bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4;
+  }
+
+  /* ============================================================
+     Hero Section
+     ============================================================ */
+  .hero-section {
+    @apply relative min-h-[85vh] flex items-center overflow-hidden py-16 md:py-20;
+  }
+  .hero-pattern {
+    @apply absolute inset-0 z-0 opacity-5 pointer-events-none;
+  }
+  .hero-glow {
+    @apply absolute top-0 right-0 w-[500px] h-[500px] bg-gold bg-opacity-20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none;
+  }
+  .hero-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full;
+  }
+  .hero-layout {
+    @apply flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20;
+  }
+  .hero-text-wrapper {
+    @apply order-2 md:order-1 flex-1 text-center md:text-right space-y-6;
+  }
+  .hero-title {
+    @apply text-base md:text-lg font-bold mb-4 tracking-wide;
+    color: var(--gold-light);
+    opacity: .95;
+  }
+  .hero-divider {
+    @apply w-16 h-1 bg-gold-light mx-auto md:mx-0 mb-4 rounded-full;
+  }
+  .hero-name {
+    @apply text-5xl md:text-6xl lg:text-7xl font-amiri font-bold text-white leading-[1.08] drop-shadow-md;
+    text-shadow: 0 14px 35px rgba(0,0,0,.22);
+  }
+  .hero-bio {
+    @apply text-base md:text-xl text-white text-opacity-90 leading-[1.95] max-w-2xl mx-auto md:mx-0 font-medium;
+    text-wrap: balance;
+  }
+  .hero-social-wrapper {
+    @apply pt-4 md:pt-6 flex justify-center md:justify-start;
+  }
+
+  .hero-social-wrapper > * {
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
+  }
+  .hero-image-wrapper {
+    @apply order-1 md:order-2 flex-shrink-0;
+  }
+  .hero-image-container {
+    @apply relative w-[280px] h-[280px];
+  }
+  .hero-image-glow {
+    @apply absolute inset-0 bg-gold bg-opacity-30 rounded-full blur-3xl transform -translate-y-4;
+  }
+  .hero-image {
+    @apply relative w-full h-full object-cover rounded-full shadow-2xl border-4 border-gold-light;
+  }
+
+  /* ============================================================
+     Category Card
+     ============================================================ */
+  .category-card {
+    @apply block w-full h-full;
+  }
+  .category-card-inner {
+    @apply relative bg-card rounded-3xl transition-all overflow-hidden border flex flex-col w-full aspect-[1.18/1];
+    border-color: var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .category-card-inner:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow-premium);
+    border-color: color-mix(in srgb, var(--gold) 65%, var(--border));
+  }
+  .category-card-img-wrapper {
+    @apply absolute inset-0 z-0;
+  }
+  .category-card-img {
+    @apply w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700;
+  }
+  .category-card-overlay {
+    @apply absolute inset-0 z-10 transition-all duration-500;
+    background:
+      linear-gradient(to top, rgba(4,13,27,.90) 0%, rgba(4,13,27,.35) 48%, rgba(4,13,27,.02) 78%),
+      linear-gradient(135deg, rgba(15,46,92,.08), transparent 50%);
+  }
+
+  .category-card-inner:hover .category-card-overlay {
+    background:
+      linear-gradient(to top, rgba(4,13,27,.96) 0%, rgba(4,13,27,.42) 52%, rgba(4,13,27,.04) 82%),
+      linear-gradient(135deg, rgba(198,161,91,.12), transparent 54%);
+  }
+  .category-card-border {
+    @apply absolute inset-0 rounded-3xl z-20 transition-all duration-300;
+    border: 1px solid transparent;
+  }
+
+  .category-card-inner:hover .category-card-border {
+    border-color: rgba(229,204,151,.58);
+    box-shadow: inset 0 0 0 1px rgba(198,161,91,.14);
+  }
+  .category-card-badge {
+    @apply absolute top-4 right-4 z-20 text-white px-3.5 py-1.5 rounded-full font-bold text-xs md:text-sm flex items-center gap-1.5;
+    background: rgba(7,22,43,.72);
+    border: 1px solid rgba(229,204,151,.42);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+  }
+  .category-card-content {
+    @apply absolute bottom-0 left-0 right-0 p-8 z-20 flex flex-col justify-end;
+  }
+  .category-card-title {
+    @apply text-3xl font-bold text-white group-hover:text-gold-light transition-colors drop-shadow-lg;
+  }
+  .category-card-divider {
+    @apply w-16 h-1.5 bg-primary-light mt-4 group-hover:w-full transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(30,74,142,0.5)];
+  }
+
+  /* ============================================================
+     Profile Page — Wrapper
+     ============================================================ */
+  .profile-page-wrapper {
+    @apply min-h-screen py-12 md:py-20 bg-background relative overflow-hidden;
+  }
+  .profile-pattern {
+    @apply absolute inset-0 z-0 opacity-[0.03] pointer-events-none;
+  }
+  .profile-content-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
+  }
+
+  /* ============================================================
+     Profile — Hero Section (Two Columns)
+     ============================================================ */
+  .profile-hero {
+    @apply relative bg-card rounded-3xl shadow-xl border border-border overflow-hidden mb-12;
+  }
+  .profile-hero-bg {
+    @apply absolute inset-0 opacity-[0.06] pointer-events-none;
+  }
+  .profile-hero-glow {
+    @apply absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none;
+    background: var(--gold);
+  }
+  .profile-hero-inner {
+    @apply relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center p-6 md:p-12;
+  }
+
+  .profile-hero-image-col {
+    @apply md:col-span-4 flex justify-center md:justify-start;
+  }
+  .profile-hero-image-wrapper {
+    @apply relative;
+  }
+  .profile-hero-image-ring {
+    @apply w-56 h-56 md:w-64 md:h-64 rounded-full p-1 shadow-2xl;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+  .profile-hero-image {
+    @apply w-full h-full object-cover rounded-full border-4;
+    border-color: var(--card);
+  }
+  .profile-hero-image-badge {
+    @apply absolute -bottom-2 right-2 flex items-center gap-1.5 px-4 py-2 rounded-full shadow-lg border-2;
+    background: var(--card);
+    border-color: var(--gold);
+  }
+  .profile-hero-image-badge-icon {
+    @apply w-4 h-4;
+    color: var(--gold);
+  }
+  .profile-hero-image-badge-text {
+    @apply text-xs font-bold;
+    color: var(--primary);
+  }
+
+  .profile-hero-text-col {
+    @apply md:col-span-8 text-center md:text-right;
+  }
+  .profile-hero-eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-bold mb-3 px-4 py-1.5 rounded-full border;
+    color: var(--gold);
+    border-color: var(--gold);
+    background: color-mix(in srgb, var(--gold) 10%, transparent);
+  }
+  .profile-hero-name {
+    @apply font-amiri text-4xl md:text-5xl lg:text-6xl font-bold mb-3 leading-tight;
+    color: var(--primary);
+  }
+  .dark .profile-hero-name {
+    color: var(--primary-light);
+  }
+  .profile-hero-title {
+    @apply text-xl md:text-2xl font-bold mb-5;
+    color: var(--gold);
+  }
+  .profile-hero-divider {
+    @apply w-20 h-1 rounded-full mb-6 mx-auto md:mx-0;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  }
+  .profile-hero-bio {
+    @apply text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto md:mx-0;
+    color: var(--muted);
+  }
+
+  /* ============================================================
+     Profile — Stats Row (Mini Cards)
+     ============================================================ */
+  .profile-stats-row {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8;
+  }
+  .profile-stat-mini {
+    @apply flex items-center gap-3 p-4 rounded-2xl border transition-all;
+    background: color-mix(in srgb, var(--primary) 5%, transparent);
+    border-color: var(--border);
+  }
+  .profile-stat-mini:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .profile-stat-mini-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
+    background: color-mix(in srgb, var(--gold) 15%, transparent);
+    color: var(--gold);
+  }
+  .profile-stat-mini-content {
+    @apply flex flex-col;
+  }
+  .profile-stat-mini-value {
+    @apply text-2xl font-bold leading-none mb-1;
+    color: var(--primary);
+  }
+  .dark .profile-stat-mini-value {
+    color: var(--primary-light);
+  }
+  .profile-stat-mini-label {
+    @apply text-xs font-semibold;
+    color: var(--muted);
+  }
+
+  /* ============================================================
+     Profile — Section Header (shared)
+     ============================================================ */
+  .profile-section {
+    @apply mb-12;
+  }
+  .profile-section-header {
+    @apply flex items-center gap-3 mb-8;
+  }
+  .profile-section-icon-box {
+    @apply w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+  }
+  .profile-section-title {
+    @apply font-amiri text-2xl md:text-3xl font-bold;
+    color: var(--primary);
+  }
+  .dark .profile-section-title {
+    color: var(--primary-light);
+  }
+  .profile-section-line {
+    @apply flex-1 h-0.5 rounded-full opacity-30;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  }
+
+  /* ============================================================
+     Profile — Bio Card
+     ============================================================ */
+  .profile-bio {
+    @apply relative bg-card rounded-3xl shadow-lg border p-8 md:p-10 overflow-hidden;
+    border-color: var(--border);
+    border-right: 4px solid var(--gold);
+  }
+  .profile-bio-quote {
+    @apply absolute top-4 left-6 text-8xl font-amiri leading-none select-none pointer-events-none;
+    color: var(--gold);
+    opacity: 0.15;
+  }
+  .profile-bio-text {
+    @apply text-lg md:text-xl leading-loose relative z-10;
+    color: var(--text);
+  }
+
+  /* ============================================================
+     Profile — Info Grid & Cards
+     ============================================================ */
+  .profile-info-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-5;
+  }
+  .profile-info-card {
+    @apply relative bg-card rounded-2xl shadow-sm border p-6 transition-all duration-300 overflow-hidden;
+    border-color: var(--border);
+  }
+  .profile-info-card:hover {
+    @apply shadow-xl -translate-y-1;
+    border-color: var(--gold);
+  }
+  .profile-info-card::before {
+    content: "";
+    @apply absolute top-0 right-0 w-1 h-full transition-all duration-300;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--primary) 100%);
+    opacity: 0;
+  }
+  .profile-info-card:hover::before {
+    opacity: 1;
+  }
+  .profile-info-card-head {
+    @apply flex items-center gap-3 mb-4;
+  }
+  .profile-info-card-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, transparent) 0%, color-mix(in srgb, var(--primary) 5%, transparent) 100%);
+    color: var(--primary);
+  }
+  .dark .profile-info-card-icon {
+    color: var(--primary-light);
+  }
+  .profile-info-card-label {
+    @apply text-sm font-bold uppercase tracking-wide;
+    color: var(--gold);
+  }
+  .profile-info-card-value {
+    @apply text-lg font-bold leading-relaxed;
+    color: var(--text);
+  }
+  .profile-info-card-list {
+    @apply space-y-2;
+  }
+  .profile-info-card-list-item {
+    @apply flex items-start gap-3 text-base leading-relaxed;
+    color: var(--text);
+  }
+  .profile-info-card-list-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0 mt-2.5;
+    background: var(--gold);
+  }
+
+  /* ============================================================
+     Profile — Certificates (Timeline)
+     ============================================================ */
+  .profile-cert-timeline {
+    @apply relative pr-8;
+  }
+  .profile-cert-timeline::before {
+    content: "";
+    @apply absolute top-2 bottom-2 right-3 w-0.5;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    opacity: 0.4;
+  }
+  .profile-cert-item {
+    @apply relative flex items-start gap-5 p-5 mb-4 bg-card rounded-2xl border transition-all duration-300;
+    border-color: var(--border);
+  }
+  .profile-cert-item:hover {
+    @apply shadow-lg -translate-x-1;
+    border-color: var(--gold);
+  }
+  .profile-cert-item::before {
+    content: "";
+    @apply absolute -right-[22px] top-8 w-4 h-4 rounded-full border-4 z-10;
+    background: var(--gold);
+    border-color: var(--background);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .profile-cert-number {
+    @apply w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm;
+    background: color-mix(in srgb, var(--gold) 15%, transparent);
+    color: var(--gold);
+  }
+  .profile-cert-text {
+    @apply text-base md:text-lg font-semibold leading-relaxed pt-2;
+    color: var(--text);
+  }
+
+  /* ============================================================
+     Profile — Visitor Float Badge (optional)
+     ============================================================ */
+  .profile-visitor-float {
+    @apply inline-flex items-center gap-3 px-5 py-3 rounded-2xl shadow-lg border-2;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-color: var(--gold-light);
+  }
+  .profile-visitor-float-icon {
+    @apply w-8 h-8 rounded-full flex items-center justify-center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  .profile-visitor-float-content {
+    @apply flex flex-col leading-none;
+  }
+  .profile-visitor-float-number {
+    @apply text-2xl font-bold;
+    color: white;
+  }
+  .profile-visitor-float-label {
+    @apply text-xs font-semibold mt-0.5;
+    color: var(--gold-light);
+  }
+
+  /* ============================================================
+     Profile — Contact Section
+     ============================================================ */
+  .profile-contact-section {
+    @apply bg-card rounded-3xl shadow-xl border p-8 md:p-12 text-center relative overflow-hidden;
+    border-color: var(--border);
+  }
+  .profile-contact-section::before {
+    content: "";
+    @apply absolute inset-0 opacity-[0.04] pointer-events-none;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--primary) 100%);
+  }
+  .profile-contact-title {
+    @apply font-amiri text-3xl md:text-4xl font-bold mb-3 relative z-10;
+    color: var(--primary);
+  }
+  .dark .profile-contact-title {
+    color: var(--primary-light);
+  }
+  .profile-contact-subtitle {
+    @apply text-base md:text-lg mb-8 relative z-10;
+    color: var(--muted);
+  }
+  .profile-contact-buttons {
+    @apply flex flex-wrap justify-center gap-4 relative z-10;
+  }
+  .profile-btn-primary {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg shadow-lg transition-all duration-300 border-2;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    border-color: var(--gold-light);
+  }
+  .profile-btn-primary:hover {
+    @apply shadow-2xl -translate-y-1;
+    border-color: var(--gold);
+  }
+  .profile-btn-secondary {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg shadow-md transition-all duration-300 border-2;
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  .dark .profile-btn-secondary {
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+  }
+  .profile-btn-secondary:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    @apply -translate-y-1;
+  }
+}
+
+/* ============================================================
+   Responsive tweaks — outside layers
+   ============================================================ */
+@media (max-width: 768px) {
+  .profile-hero-inner {
+    padding: 1.5rem;
+  }
+  .profile-cert-timeline {
+    padding-right: 1.5rem;
+  }
+  .profile-cert-item::before {
+    right: -18px;
+  }
+}
+
+
+/* ============================================================
+   Premium content surfaces
+   ============================================================ */
+.section-shell {
+  position: relative;
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -120px;
+  top: -80px;
+  border-radius: 999px;
+  background: rgba(198,161,91,.045);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+main .bg-card {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Home statistics strip */
+.home-stats-strip {
+  position: relative;
+  background: rgba(255,255,255,.68);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+}
+
+.dark .home-stats-strip {
+  background: rgba(15,27,51,.65);
+}
+
+.home-stat {
+  position: relative;
+  padding: 8px 12px;
+}
+
+.home-stat + .home-stat::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -1px;
+  width: 1px;
+  background: var(--border);
+}
+
+/* Generic polished headings */
+.section-heading {
+  text-wrap: balance;
+}
+
+.section-heading + p {
+  max-width: 680px;
+}
+
+/* Video cards and player surfaces */
+.video-card-premium {
+  box-shadow: var(--shadow-soft);
+  border-color: var(--border);
+}
+
+.video-card-premium:hover {
+  border-color: rgba(198,161,91,.55);
+  box-shadow: var(--shadow-premium);
+}
+
+/* Make embedded long videos feel intentional on desktop */
+.video-player-shell {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(198,161,91,.07), transparent 42%),
+    #05080e;
+  box-shadow: 0 30px 90px rgba(3,10,21,.24);
+}
+
+.video-player-shell iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Subtle focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+/* Mobile polish */
+@media (max-width: 768px) {
+  .header-nav-content {
+    @apply h-[68px];
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding-top: 42px;
+    padding-bottom: 54px;
+  }
+
+  .hero-section::before {
+    inset: 8px;
+    border-radius: 24px;
+  }
+
+  .hero-image-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .category-card-inner {
+    aspect-ratio: 1.06 / 1;
+    border-radius: 24px;
+  }
+
+  .category-card-border {
+    border-radius: 24px;
+  }
+
+  .category-card-content {
+    padding: 18px;
+  }
+
+  .category-card-title {
+    font-size: 1.55rem;
+  }
+
+  .home-stat + .home-stat::before {
+    display: none;
+  }
+}
