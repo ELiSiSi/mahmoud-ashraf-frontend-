@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams, Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -38,7 +38,7 @@ const getCategoryIcon = (id: string, name: string) => {
 };
 
 // ============================================================================
-// Video Detector
+// Video Detector (للتعامل مع الروابط وتحديد المنصة والأبعاد)
 // ============================================================================
 const detectVideo = (url: string, overrideOrientation?: 'portrait' | 'landscape' | 'square') => {
   const orientationToRatio = (o: string) =>
@@ -118,35 +118,34 @@ const detectVideo = (url: string, overrideOrientation?: 'portrait' | 'landscape'
 };
 
 // ============================================================================
-// دالة جلب بيانات الفيديو تلقائيًا
+// 🆕 دالة جلب بيانات الفيديو تلقائيًا من الرابط (Title, Thumbnail)
 // ============================================================================
-const fetchVideoMetadata = async (url: string): Promise<{ title: string; thumbnail: string; orientation?: 'portrait' | 'landscape' | 'square' }> => {
+const fetchVideoMetadata = async (url: string): Promise<{ title: string; thumbnail: string }> => {
   const parsed = detectVideo(url);
   const defaultResult = { title: 'فيديو', thumbnail: '' };
 
   try {
     let oembedUrl = '';
+    // يوتيوب: oembed endpoint
     if (parsed.platform === 'youtube' && parsed.id) {
       oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
     }
+    // تيك توك: oembed endpoint
     else if (parsed.platform === 'tiktok' && parsed.id) {
       oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
     }
+    // فيميو: oembed endpoint (لو حبيت تدعمه لاحقًا)
+    // else if (parsed.platform === 'vimeo' && parsed.id) {
+    //   oembedUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(url)}`;
+    // }
 
     if (oembedUrl) {
       const res = await fetch(oembedUrl);
       if (res.ok) {
         const data = await res.json();
-        let fetchedOrientation: 'portrait' | 'landscape' | 'square' | undefined = undefined;
-        if (data.width && data.height) {
-          if (data.width > data.height) fetchedOrientation = 'landscape';
-          else if (data.height > data.width) fetchedOrientation = 'portrait';
-          else fetchedOrientation = 'square';
-        }
         return {
           title: data.title || defaultResult.title,
           thumbnail: data.thumbnail_url || defaultResult.thumbnail,
-          orientation: fetchedOrientation,
         };
       }
     }
@@ -154,6 +153,7 @@ const fetchVideoMetadata = async (url: string): Promise<{ title: string; thumbna
     console.warn('فشل جلب بيانات الفيديو:', url, error);
   }
 
+  // Fallback: لو الـ oembed فشل، نجيب صورة مصغرة من يوتيوب بالطريقة المباشرة
   if (parsed.platform === 'youtube' && parsed.id) {
     return {
       title: defaultResult.title,
@@ -288,41 +288,38 @@ export const Home = () => {
 };
 
 // ============================================================================
-// Series Page
+// Series Page — مع جلب بيانات الفيديو تلقائيًا
 // ============================================================================
 const SeriesPage = () => {
   const { id, videoId } = useParams();
   const navigate = useNavigate();
   const [iframeError, setIframeError] = useState(false);
 
-  // ✅ ref لمكان مشغل الفيديو
-  const videoPlayerRef = useRef<HTMLDivElement>(null);
-  const prevSeriesIdRef = useRef<string | undefined>(undefined);
-
-  const [videosMetadata, setVideosMetadata] = useState<Record<string, { title: string; thumbnail: string; orientation?: 'portrait' | 'landscape' | 'square' }>>({});
+  // 🆕 state لتخزين بيانات الفيديو (العنوان والصورة المصغرة)
+  const [videosMetadata, setVideosMetadata] = useState<Record<string, { title: string; thumbnail: string }>>({});
 
   const series = sheikhConfig.categories?.find(c => c.id === id);
   const currentIndex = videoId && series ? series.videos.findIndex(v => v.id === videoId) : -1;
   const currentVideo = currentIndex >= 0 && series ? series.videos[currentIndex] : null;
-  const currentVideoMetadata = currentVideo ? videosMetadata[currentVideo.id] : null;
-  const parsedVideo = currentVideo ? detectVideo(currentVideo.url, currentVideo.orientation || currentVideoMetadata?.orientation) : null;
+  const parsedVideo = currentVideo ? detectVideo(currentVideo.url, currentVideo.orientation) : null;
   const hasNext = currentIndex >= 0 && series ? currentIndex < series.videos.length - 1 : false;
   const hasPrev = currentIndex > 0;
 
-  // جلب بيانات كل الفيديوهات عند فتح الصفحة
+  // 🆕 useEffect لجلب بيانات كل الفيديوهات عند فتح الصفحة
   useEffect(() => {
     if (!series) return;
     let isMounted = true;
 
     const loadAllMetadata = async () => {
-      const metadata: Record<string, { title: string; thumbnail: string; orientation?: 'portrait' | 'landscape' | 'square' }> = {};
+      const metadata: Record<string, { title: string; thumbnail: string }> = {};
+      // نجيب بيانات كل فيديو بالتوازي
       await Promise.all(
         series.videos.map(async (v) => {
           const data = await fetchVideoMetadata(v.url);
+          // الأولوية: العنوان اللي في الـ config (لو موجود) ثم اللي جبناه
           metadata[v.id] = {
             title: v.title || data.title,
             thumbnail: data.thumbnail,
-            orientation: v.orientation || data.orientation,
           };
         })
       );
@@ -333,22 +330,10 @@ const SeriesPage = () => {
     return () => { isMounted = false; };
   }, [series]);
 
-  // ✅ scroll ذكي: لمكان الفيديو لو فيديو مختار، لأعلى الصفحة لو سلسلة جديدة
+  // scroll لأعلى الصفحة عند تغيير السلسلة أو الفيديو
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
     setIframeError(false);
-
-    if (videoId && videoPlayerRef.current) {
-      // فيه فيديو مختار → scroll لمكان الفيديو (مع مسافة للنافبار)
-      const yOffset = -80;
-      const element = videoPlayerRef.current;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'auto' });
-    } else if (!videoId && prevSeriesIdRef.current !== id) {
-      // سلسلة جديدة بدون فيديو → scroll لأعلى الصفحة
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    }
-
-    prevSeriesIdRef.current = id;
   }, [id, videoId]);
 
   if (!series) return <Navigate to="/" replace />;
@@ -356,7 +341,9 @@ const SeriesPage = () => {
   const Icon = getCategoryIcon(series.id, series.name);
   const playVideo = (vId: string) => navigate(`/category/${id}/video/${vId}`);
 
+  // دالة للحصول على عنوان الفيديو (من الـ config أو من اللي جبناه)
   const getVideoTitle = (video: Video) => video.title || videosMetadata[video.id]?.title || '...';
+  // دالة للحصول على الصورة المصغرة
   const getVideoThumbnail = (video: Video) => videosMetadata[video.id]?.thumbnail || series.image;
 
   return (
@@ -368,7 +355,7 @@ const SeriesPage = () => {
           <ArrowRight className="w-5 h-5 ml-2" /> العودة للرئيسية
         </Link>
 
-        {/* ============ Series Header ============ */}
+        {/* ============ Series Header — Image + Name ============ */}
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 bg-card p-6 md:p-8 rounded-3xl shadow-lg border border-border mb-8">
           <div className="relative flex-shrink-0">
             <img
@@ -394,14 +381,13 @@ const SeriesPage = () => {
           </div>
         </div>
 
-        {/* ============ Video Player — مع ref ============ */}
+        {/* ============ Video Player — يظهر فقط لما فيديو مختار ============ */}
         {currentVideo && parsedVideo && (
           <motion.div
-            ref={videoPlayerRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="mb-10 scroll-mt-24"
+            className="mb-10"
           >
             <div
               className={`relative mx-auto bg-black overflow-hidden shadow-2xl md:rounded-2xl md:border-2 md:border-gold ${
