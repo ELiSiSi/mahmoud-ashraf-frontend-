@@ -821,9 +821,8 @@ export const PrayerTimes = () => {
                   relative
                   overflow-hidden
                   rounded-l-xl
-                  bg-white/60
-                  dark:bg-[#0F1B33]/60
-                  backdrop-blur-md
+                  bg-white/30
+                  dark:bg-[#0F1B33]/30
                   shadow-2xl
                   p-2.5
                   md:p-4
