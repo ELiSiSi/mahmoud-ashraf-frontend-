@@ -16,9 +16,24 @@ const useAthkar = () => {
     if (!sheikhConfig.athkar || sheikhConfig.athkar.length === 0) return;
     const savedIndex = localStorage.getItem('lastAthkarIndex');
     if (savedIndex !== null) setCurrentIndex(parseInt(savedIndex) % sheikhConfig.athkar.length);
-    let intervalId: NodeJS.Timeout;
+    let intervalId: any;
+    let prayerVisible = false;
+    let lastPrayerHideTime = 0;
+
+    const handlePrayerVisibility = (e: any) => {
+      prayerVisible = e.detail.isVisible;
+      if (prayerVisible) {
+        setIsVisible(false);
+      } else {
+        lastPrayerHideTime = Date.now();
+      }
+    };
+    window.addEventListener('prayerVisibilityChanged', handlePrayerVisibility);
 
     const showToast = () => {
+      if (prayerVisible) return;
+      if (Date.now() - lastPrayerHideTime < 5000) return; // wait 5s after prayer toast hides
+
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
@@ -33,11 +48,12 @@ const useAthkar = () => {
     const initialTimeout = setTimeout(() => {
       showToast();
       intervalId = setInterval(showToast, sheikhConfig.settings.athkarInterval);
-    }, 20000);
+    }, 3500);
 
     return () => {
       clearTimeout(initialTimeout);
       if (intervalId) clearInterval(intervalId);
+      window.removeEventListener('prayerVisibilityChanged', handlePrayerVisibility);
     };
   }, []);
 

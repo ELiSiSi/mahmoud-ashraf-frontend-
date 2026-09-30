@@ -305,7 +305,7 @@ export const PrayerTimes = () => {
     useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setCanShowToast(true), 10000);
+    const t = setTimeout(() => setCanShowToast(true), 3000);
     return () => clearTimeout(t);
   }, []);
 
@@ -325,6 +325,11 @@ export const PrayerTimes = () => {
     useState<ReminderType | null>(
       null
     );
+
+  useEffect(() => {
+    const isVisible = Boolean(canShowToast && showReminder && reminderPrayer && reminderType);
+    window.dispatchEvent(new CustomEvent('prayerVisibilityChanged', { detail: { isVisible } }));
+  }, [canShowToast, showReminder, reminderPrayer, reminderType]);
 
   // ==========================================================================
   // Refs
@@ -804,7 +809,7 @@ export const PrayerTimes = () => {
                 md:right-8
                 z-[9999]
                 w-[calc(100%-32px)]
-                max-w-[280px]
+                max-w-[260px]
                 md:max-w-sm
                 pointer-events-none
               "
@@ -816,12 +821,12 @@ export const PrayerTimes = () => {
                   relative
                   overflow-hidden
                   rounded-l-xl
-                  bg-white/80
-                  dark:bg-[#0F1B33]/80
+                  bg-white/60
+                  dark:bg-[#0F1B33]/60
                   backdrop-blur-md
                   shadow-2xl
-                  p-3
-                  md:p-5
+                  p-2.5
+                  md:p-4
                 "
                 style={{ borderRight: '4px solid var(--gold)' }}
               >
