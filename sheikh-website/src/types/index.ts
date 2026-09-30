@@ -54,6 +54,7 @@ export interface SheikhConfig {
     athkarInterval: number;
     athkarDuration: number;
     prayerReminderInterval: number;
+    prayerReminderDuration: number;
     adDelay: number;
     city: string;
     country: string;

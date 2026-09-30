@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Heart, ArrowUp, Home, User, Mail, MessageCircle } from 'lucide-react';
+import { Heart, ArrowUp, Home, User, Mail } from 'lucide-react';
 import { sheikhConfig } from '../data/sheikhConfig';
 
 // ============================================================================
