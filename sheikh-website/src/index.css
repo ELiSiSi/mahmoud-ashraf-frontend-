@@ -212,7 +212,7 @@
     @apply fixed top-24 right-4 md:right-8 z-[100] max-w-sm pointer-events-none;
   }
   .athkar-toast-content {
-    @apply bg-white dark:bg-card shadow-2xl rounded-l-xl p-4 md:p-6 flex items-center gap-4 relative overflow-hidden pointer-events-auto;
+    @apply bg-white/80 dark:bg-[#0F1B33]/80 backdrop-blur-md shadow-2xl rounded-l-xl p-4 md:p-6 flex items-center gap-4 relative overflow-hidden pointer-events-auto;
     border-right: 4px solid var(--gold);
   }
   .athkar-toast-text {

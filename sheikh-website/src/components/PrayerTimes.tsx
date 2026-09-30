@@ -301,6 +301,14 @@ export const PrayerTimes = () => {
   const [loading, setLoading] =
     useState(true);
 
+  const [canShowToast, setCanShowToast] =
+    useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setCanShowToast(true), 10000);
+    return () => clearTimeout(t);
+  }, []);
+
   // ==========================================================================
   // Notification State
   // ==========================================================================
@@ -766,7 +774,7 @@ export const PrayerTimes = () => {
       {/* ================================================================== */}
 
       <AnimatePresence>
-        {showReminder &&
+        {canShowToast && showReminder &&
           reminderPrayer &&
           reminderType && (
             <motion.div
@@ -808,8 +816,9 @@ export const PrayerTimes = () => {
                   relative
                   overflow-hidden
                   rounded-l-xl
-                  bg-white
-                  dark:bg-card
+                  bg-white/80
+                  dark:bg-[#0F1B33]/80
+                  backdrop-blur-md
                   shadow-2xl
                   p-3
                   md:p-5

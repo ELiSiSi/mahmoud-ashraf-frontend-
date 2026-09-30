@@ -16,8 +16,9 @@ const useAthkar = () => {
     if (!sheikhConfig.athkar || sheikhConfig.athkar.length === 0) return;
     const savedIndex = localStorage.getItem('lastAthkarIndex');
     if (savedIndex !== null) setCurrentIndex(parseInt(savedIndex) % sheikhConfig.athkar.length);
+    let intervalId: NodeJS.Timeout;
 
-    const intervalId = setInterval(() => {
+    const showToast = () => {
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
@@ -27,8 +28,17 @@ const useAthkar = () => {
           return nextIndex;
         });
       }, sheikhConfig.settings.athkarDuration);
-    }, sheikhConfig.settings.athkarInterval);
-    return () => clearInterval(intervalId);
+    };
+
+    const initialTimeout = setTimeout(() => {
+      showToast();
+      intervalId = setInterval(showToast, sheikhConfig.settings.athkarInterval);
+    }, 20000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   if (!sheikhConfig.athkar || sheikhConfig.athkar.length === 0) return { thikr: null, isVisible: false };
