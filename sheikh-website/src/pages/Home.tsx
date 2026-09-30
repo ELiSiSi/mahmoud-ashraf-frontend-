@@ -7,6 +7,9 @@ import {
 } from 'lucide-react';
 import { sheikhConfig } from '../data/sheikhConfig';
 import { SocialLinks } from '../components/Footer';
+import { PrayerTimes } from '../components/PrayerTimes';
+import { ShareButtons } from '../components/ShareButtons';
+import { SEO } from '../components/SEO';
 
 // ============================================================================
 // Types
@@ -234,8 +237,16 @@ export const Home = () => {
   const totalCategories = sheikhConfig.categories?.length || 0;
 
   return (
-    <div className="min-h-screen">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen"
+    >
+      <SEO />
       <Hero />
+      <PrayerTimes />
 
       <section className="bg-card border-y border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
@@ -283,7 +294,7 @@ export const Home = () => {
           </div>
         )}
       </main>
-    </div>
+    </motion.div>
   );
 };
 
@@ -347,7 +358,14 @@ const SeriesPage = () => {
   const getVideoThumbnail = (video: Video) => videosMetadata[video.id]?.thumbnail || series.image;
 
   return (
-    <div className="min-h-screen py-8 md:py-12">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen py-8 md:py-12"
+    >
+      <SEO title={series.name} description={`فيديوهات سلسلة ${series.name}`} type="article" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ============ Back Link ============ */}
@@ -377,7 +395,11 @@ const SeriesPage = () => {
             <h1 className="text-3xl md:text-5xl font-amiri font-bold text-primary dark:text-primary-light mb-4">
               {series.name}
             </h1>
-            <div className="w-20 h-1 bg-gold rounded-full mx-auto md:mx-0"></div>
+            <div className="w-20 h-1 bg-gold rounded-full mx-auto md:mx-0 mb-4"></div>
+            <ShareButtons 
+              url={window.location.href} 
+              title={`سلسلة: ${series.name}`}
+            />
           </div>
         </div>
 
@@ -422,10 +444,18 @@ const SeriesPage = () => {
               )}
             </div>
 
-            {/* Video Title */}
-            <h2 className="text-lg md:text-2xl font-bold text-primary dark:text-gold mt-5 mb-5 text-center leading-relaxed">
-              {getVideoTitle(currentVideo)}
-            </h2>
+            {/* Video Title and Share */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-5 mb-5 text-center md:text-right w-full md:max-w-[680px] mx-auto">
+              <h2 className="text-lg md:text-2xl font-bold text-primary dark:text-gold leading-relaxed flex-1">
+                {getVideoTitle(currentVideo)}
+              </h2>
+              <div className="shrink-0">
+                <ShareButtons 
+                  url={window.location.href} 
+                  title={`${series.name} - ${getVideoTitle(currentVideo)}`}
+                />
+              </div>
+            </div>
 
             {/* Prev / Next Buttons */}
             {(hasPrev || hasNext) && (
@@ -534,7 +564,7 @@ const SeriesPage = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

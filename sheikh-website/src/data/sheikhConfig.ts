@@ -28,9 +28,7 @@ export const sheikhConfig: SheikhConfig = {
 
   // حقول إضافية مفتوحة
   customFields: [
-
-  
-    { label: "البريد ", value: "lessons@example.com" }
+    { label: "البريد الإلكتروني", value: "realmahmoudashraf@gmail.com" }
   ],
 
   // الألوان
@@ -43,12 +41,12 @@ export const sheikhConfig: SheikhConfig = {
 
   // السوشيال ميديا
   social: {
-    tiktok: "https://tiktok.com/@example",
-    facebook: "https://facebook.com/example",
-    instagram: "https://instagram.com/example",
-    youtube: "https://youtube.com/@example",
-    whatsapp: "https://wa.me/201000000000",
-    email: "mailto:example@example.com"
+    youtube: "https://www.youtube.com/@realmahmoudashraf",
+    threads: "https://www.threads.com/@realmahmoudashraf",
+    tiktok: "https://www.tiktok.com/@realmahmoudashraf",
+    facebook: "https://www.facebook.com/realmahmoudashraf",
+    instagram: "https://www.instagram.com/realmahmoudashraf",
+    email: "mailto:realmahmoudashraf@gmail.com"
   },
 
   // رسالة المشاركة
@@ -90,15 +88,20 @@ export const sheikhConfig: SheikhConfig = {
   ],
 
   // إعدادات التوقيت
-  settings: {
-    athkarInterval: 15000,
-    athkarDuration: 5000,
-    prayerReminderInterval: 600000,
-    adDelay: 3000,
-    city: "Cairo",
-    country: "Egypt"
-  },
+settings: {
+  athkarInterval: 15000,
+  athkarDuration: 5000,
 
+  // تذكير الصلاة التي لم يؤكد المستخدم أنه صلاها
+  prayerReminderInterval: 300000, // 5 دقائق
+
+  // مدة ظهور الإشعار
+  prayerReminderDuration: 6000,
+
+  adDelay: 3000,
+  city: "Cairo",
+  country: "Egypt"
+},
   // SEO
   seo: {
     siteUrl: "https://example.vercel.app",

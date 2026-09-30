@@ -39,12 +39,13 @@ export interface SheikhConfig {
     text: string;
   };
   social: {
-    tiktok: string;
-    facebook: string;
-    instagram: string;
-    youtube: string;
-    whatsapp: string;
-    email: string;
+    youtube?: string;
+    threads?: string;
+    tiktok?: string;
+    facebook?: string;
+    instagram?: string;
+    whatsapp?: string;
+    email?: string;
   };
   shareMessage: string;
   athkar: string[];

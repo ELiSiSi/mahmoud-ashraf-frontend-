@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { sheikhConfig } from '../data/sheikhConfig';
 import { SocialLinks } from '../components/Footer';
+import { SEO } from '../components/SEO';
 
 // ============================================================================
 // Visitor Counter Hook
@@ -71,7 +72,14 @@ export const SheikhProfile = () => {
   const patternSvg = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%230F2E5C' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`;
 
   return (
-    <div className="profile-page-wrapper">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="profile-page-wrapper"
+    >
+      <SEO title="الملف الشخصي" type="profile" />
       {/* Background pattern */}
       <div
         className="profile-pattern"
@@ -301,6 +309,6 @@ export const SheikhProfile = () => {
           </div>
         </motion.section>
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -106,44 +106,17 @@
   }
 
   /* ============================================================
-     Footer
-     ============================================================ */
-  .footer-container {
-    @apply bg-primary text-white py-12 border-t-2 border-gold relative overflow-hidden;
-  }
-  .footer-pattern {
-    @apply absolute inset-0 z-0 opacity-5;
-  }
-  .footer-content {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center;
-  }
-  .footer-title {
-    @apply font-qahiri text-5xl md:text-6xl font-bold mb-2 drop-shadow-md tracking-wide;
-  }
-  .footer-subtitle {
-    @apply text-gold-light text-lg mb-6;
-  }
-  .footer-copyright {
-    @apply text-gold-light opacity-70 text-sm;
-  }
-
-  /* ============================================================
      Social Links
      ============================================================ */
-  .social-links-footer {
-    @apply flex gap-4 flex-wrap justify-center;
-  }
-  .social-link-footer {
-    @apply text-gold-light hover:text-white transition-colors;
-  }
   .social-links-hero {
     @apply flex gap-4 flex-wrap;
   }
   .social-link-hero {
-    @apply w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white border-2 border-gold-light transition-colors shadow-lg;
+    @apply w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white border-2 transition-colors shadow-lg;
+    border-color: var(--gold-light);
   }
   .social-link-hero:hover {
-    @apply bg-gold-light;
+    background: var(--gold-light);
     color: var(--navy-950);
   }
 
@@ -194,7 +167,6 @@
     color: var(--primary);
     text-shadow: 0 7px 20px rgba(15,46,92,.10);
   }
-
   .dark .header-logo-text {
     color: var(--gold-light);
     text-shadow: 0 7px 24px rgba(214,179,93,.14);
@@ -240,10 +212,15 @@
     @apply fixed top-24 right-4 md:right-8 z-[100] max-w-sm pointer-events-none;
   }
   .athkar-toast-content {
-    @apply bg-white dark:bg-card border-r-4 border-gold shadow-2xl rounded-l-xl p-4 md:p-6 flex items-center gap-4 relative overflow-hidden pointer-events-auto;
+    @apply bg-white dark:bg-card shadow-2xl rounded-l-xl p-4 md:p-6 flex items-center gap-4 relative overflow-hidden pointer-events-auto;
+    border-right: 4px solid var(--gold);
   }
   .athkar-toast-text {
-    @apply text-primary dark:text-gold-light font-bold text-2xl md:text-3xl font-amiri leading-relaxed;
+    @apply font-bold text-2xl md:text-3xl font-amiri leading-relaxed;
+    color: var(--primary);
+  }
+  .dark .athkar-toast-text {
+    color: var(--gold-light);
   }
 
   /* ============================================================
@@ -253,10 +230,12 @@
     @apply fixed top-24 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md;
   }
   .prayer-modal-content {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gold p-6 text-center;
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 text-center;
+    border: 1px solid var(--gold);
   }
   .prayer-modal-icon {
-    @apply w-12 h-12 bg-gold bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4;
+    @apply w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4;
+    background: color-mix(in srgb, var(--gold) 10%, transparent);
   }
 
   /* ============================================================
@@ -269,7 +248,9 @@
     @apply absolute inset-0 z-0 opacity-5 pointer-events-none;
   }
   .hero-glow {
-    @apply absolute top-0 right-0 w-[500px] h-[500px] bg-gold bg-opacity-20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none;
+    @apply absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none;
+    background: var(--gold);
+    opacity: 0.2;
   }
   .hero-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full;
@@ -286,7 +267,8 @@
     opacity: .95;
   }
   .hero-divider {
-    @apply w-16 h-1 bg-gold-light mx-auto md:mx-0 mb-4 rounded-full;
+    @apply w-16 h-1 mx-auto md:mx-0 mb-4 rounded-full;
+    background: var(--gold-light);
   }
   .hero-name {
     @apply text-5xl md:text-6xl lg:text-7xl font-amiri font-bold text-white leading-[1.08] drop-shadow-md;
@@ -299,7 +281,6 @@
   .hero-social-wrapper {
     @apply pt-4 md:pt-6 flex justify-center md:justify-start;
   }
-
   .hero-social-wrapper > * {
     filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
   }
@@ -310,10 +291,13 @@
     @apply relative w-[280px] h-[280px];
   }
   .hero-image-glow {
-    @apply absolute inset-0 bg-gold bg-opacity-30 rounded-full blur-3xl transform -translate-y-4;
+    @apply absolute inset-0 rounded-full blur-3xl transform -translate-y-4;
+    background: var(--gold);
+    opacity: 0.3;
   }
   .hero-image {
-    @apply relative w-full h-full object-cover rounded-full shadow-2xl border-4 border-gold-light;
+    @apply relative w-full h-full object-cover rounded-full shadow-2xl border-4;
+    border-color: var(--gold-light);
   }
 
   /* ============================================================
@@ -327,7 +311,6 @@
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
   }
-
   .category-card-inner:hover {
     transform: translateY(-7px);
     box-shadow: var(--shadow-premium);
@@ -345,7 +328,6 @@
       linear-gradient(to top, rgba(4,13,27,.90) 0%, rgba(4,13,27,.35) 48%, rgba(4,13,27,.02) 78%),
       linear-gradient(135deg, rgba(15,46,92,.08), transparent 50%);
   }
-
   .category-card-inner:hover .category-card-overlay {
     background:
       linear-gradient(to top, rgba(4,13,27,.96) 0%, rgba(4,13,27,.42) 52%, rgba(4,13,27,.04) 82%),
@@ -355,7 +337,6 @@
     @apply absolute inset-0 rounded-3xl z-20 transition-all duration-300;
     border: 1px solid transparent;
   }
-
   .category-card-inner:hover .category-card-border {
     border-color: rgba(229,204,151,.58);
     box-shadow: inset 0 0 0 1px rgba(198,161,91,.14);
@@ -371,10 +352,18 @@
     @apply absolute bottom-0 left-0 right-0 p-8 z-20 flex flex-col justify-end;
   }
   .category-card-title {
-    @apply text-3xl font-bold text-white group-hover:text-gold-light transition-colors drop-shadow-lg;
+    @apply text-3xl font-bold text-white transition-colors drop-shadow-lg;
+  }
+  .category-card-inner:hover .category-card-title {
+    color: var(--gold-light);
   }
   .category-card-divider {
-    @apply w-16 h-1.5 bg-primary-light mt-4 group-hover:w-full transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(30,74,142,0.5)];
+    @apply w-16 h-1.5 mt-4 rounded-full transition-all duration-500;
+    background: var(--primary-light);
+    box-shadow: 0 0 10px rgba(30,74,142,0.5);
+  }
+  .category-card-inner:hover .category-card-divider {
+    width: 100%;
   }
 
   /* ============================================================
@@ -406,7 +395,6 @@
   .profile-hero-inner {
     @apply relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center p-6 md:p-12;
   }
-
   .profile-hero-image-col {
     @apply md:col-span-4 flex justify-center md:justify-start;
   }
@@ -434,7 +422,6 @@
     @apply text-xs font-bold;
     color: var(--primary);
   }
-
   .profile-hero-text-col {
     @apply md:col-span-8 text-center md:text-right;
   }
@@ -465,7 +452,7 @@
   }
 
   /* ============================================================
-     Profile — Stats Row (Mini Cards)
+     Profile — Stats Row
      ============================================================ */
   .profile-stats-row {
     @apply grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8;
@@ -500,7 +487,7 @@
   }
 
   /* ============================================================
-     Profile — Section Header (shared)
+     Profile — Section Header
      ============================================================ */
   .profile-section {
     @apply mb-12;
@@ -598,7 +585,7 @@
   }
 
   /* ============================================================
-     Profile — Certificates (Timeline)
+     Profile — Certificates
      ============================================================ */
   .profile-cert-timeline {
     @apply relative pr-8;
@@ -632,31 +619,6 @@
   .profile-cert-text {
     @apply text-base md:text-lg font-semibold leading-relaxed pt-2;
     color: var(--text);
-  }
-
-  /* ============================================================
-     Profile — Visitor Float Badge (optional)
-     ============================================================ */
-  .profile-visitor-float {
-    @apply inline-flex items-center gap-3 px-5 py-3 rounded-2xl shadow-lg border-2;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    border-color: var(--gold-light);
-  }
-  .profile-visitor-float-icon {
-    @apply w-8 h-8 rounded-full flex items-center justify-center;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-  }
-  .profile-visitor-float-content {
-    @apply flex flex-col leading-none;
-  }
-  .profile-visitor-float-number {
-    @apply text-2xl font-bold;
-    color: white;
-  }
-  .profile-visitor-float-label {
-    @apply text-xs font-semibold mt-0.5;
-    color: var(--gold-light);
   }
 
   /* ============================================================
@@ -709,6 +671,161 @@
     background: color-mix(in srgb, var(--primary) 10%, transparent);
     @apply -translate-y-1;
   }
+
+  /* ============================================================
+     Footer — NEW DESIGN
+     ============================================================ */
+  .footer-container {
+    @apply text-white py-16 relative overflow-hidden border-t-2;
+    background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, var(--navy-900) 100%);
+    border-top-color: var(--gold);
+  }
+  .footer-pattern {
+    @apply absolute inset-0 z-0 opacity-[0.04] pointer-events-none;
+  }
+  .footer-glow {
+    @apply absolute -top-40 right-0 w-[700px] h-[700px] rounded-full blur-[180px] pointer-events-none z-0;
+    background: radial-gradient(circle, rgba(198, 161, 91, 0.3), transparent 70%);
+  }
+  .footer-content {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
+  }
+  .footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12;
+  }
+  .footer-col-brand {
+    @apply md:col-span-2 lg:col-span-6 lg:pl-8;
+  }
+  .footer-brand {
+    @apply inline-flex items-center gap-4 mb-5;
+  }
+  .footer-brand-icon {
+    @apply w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 border-2;
+    background: color-mix(in srgb, var(--gold) 15%, transparent);
+    border-color: color-mix(in srgb, var(--gold) 40%, transparent);
+  }
+  .footer-brand:hover .footer-brand-icon {
+    background: color-mix(in srgb, var(--gold) 25%, transparent);
+    border-color: var(--gold);
+    transform: scale(1.05);
+  }
+  .footer-brand-icon span {
+    @apply text-3xl;
+    color: var(--gold);
+  }
+  .footer-brand-name {
+    @apply font-amiri text-3xl md:text-4xl font-bold leading-tight;
+    color: #FFFFFF;
+  }
+  .footer-brand-title {
+    @apply text-sm md:text-base font-bold mt-1;
+    color: var(--gold-light);
+  }
+  .footer-brand-bio {
+    @apply text-sm md:text-base leading-relaxed mb-6 max-w-md;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .footer-brand-social {
+    @apply mt-2;
+  }
+  .footer-col {
+    @apply lg:col-span-3;
+  }
+  .footer-col-title {
+    @apply text-lg font-bold mb-5 pb-3 relative;
+    color: var(--gold);
+    border-bottom: 1px solid color-mix(in srgb, var(--gold) 20%, transparent);
+  }
+  .footer-col-title::after {
+    content: "";
+    @apply absolute bottom-0 right-0 w-12 h-0.5;
+    background: var(--gold);
+  }
+  .footer-links {
+    @apply flex flex-col gap-2.5;
+  }
+  .footer-link {
+    @apply inline-flex items-center gap-2.5 text-sm md:text-base transition-all duration-300 py-1;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .footer-link:hover {
+    color: var(--gold);
+    transform: translateX(-4px);
+  }
+  .footer-link svg {
+    @apply w-4 h-4 flex-shrink-0;
+    color: color-mix(in srgb, var(--gold) 60%, transparent);
+  }
+  .footer-link:hover svg {
+    color: var(--gold);
+  }
+  .footer-link-bullet {
+    @apply text-xs leading-none;
+    color: var(--gold);
+  }
+  .footer-link-text {
+    @apply truncate;
+  }
+  .footer-social-grid {
+    @apply flex flex-wrap gap-2.5;
+  }
+  .footer-social-btn {
+    @apply w-11 h-11 rounded-xl flex items-center justify-center transition-all;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid color-mix(in srgb, var(--gold) 25%, transparent);
+  }
+  .footer-social-btn:hover {
+    background: color-mix(in srgb, var(--gold) 15%, transparent);
+    border-color: var(--gold);
+  }
+  .footer-social-btn svg {
+    @apply w-5 h-5 transition-colors;
+    fill: var(--gold-light);
+  }
+  .footer-social-btn:hover svg {
+    fill: var(--gold);
+  }
+  .footer-divider {
+    @apply flex items-center justify-center gap-4 my-10;
+  }
+  .footer-divider-line {
+    @apply flex-1 h-px;
+    background: linear-gradient(to left, transparent, rgba(198, 161, 91, 0.4), transparent);
+  }
+  .footer-divider-star {
+    @apply text-2xl leading-none;
+    color: var(--gold);
+  }
+  .footer-bottom {
+    @apply flex flex-col md:flex-row items-center justify-between gap-3 pt-6 text-center md:text-right;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-copyright {
+    @apply text-sm;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .footer-copyright-name {
+    @apply font-bold;
+    color: var(--gold-light);
+  }
+  .footer-made-with {
+    @apply text-sm flex items-center gap-1;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ============================================================
+     Scroll to Top Button
+     ============================================================ */
+  .scroll-to-top-btn {
+    @apply fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full flex items-center justify-center;
+    @apply shadow-2xl border-2 border-white/30 transition-all;
+    background: var(--gold);
+    color: var(--primary);
+  }
+  .scroll-to-top-btn:hover {
+    background: var(--gold-light);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 /* ============================================================
@@ -725,7 +842,6 @@
     right: -18px;
   }
 }
-
 
 /* ============================================================
    Premium content surfaces
@@ -751,7 +867,6 @@ main .bg-card {
   box-shadow: var(--shadow-soft);
 }
 
-/* Home statistics strip */
 .home-stats-strip {
   position: relative;
   background: rgba(255,255,255,.68);
@@ -778,7 +893,6 @@ main .bg-card {
   background: var(--border);
 }
 
-/* Generic polished headings */
 .section-heading {
   text-wrap: balance;
 }
@@ -787,7 +901,6 @@ main .bg-card {
   max-width: 680px;
 }
 
-/* Video cards and player surfaces */
 .video-card-premium {
   box-shadow: var(--shadow-soft);
   border-color: var(--border);
@@ -798,7 +911,6 @@ main .bg-card {
   box-shadow: var(--shadow-premium);
 }
 
-/* Make embedded long videos feel intentional on desktop */
 .video-player-shell {
   background:
     radial-gradient(circle at 50% 0%, rgba(198,161,91,.07), transparent 42%),
@@ -812,7 +924,6 @@ main .bg-card {
   height: 100%;
 }
 
-/* Subtle focus states */
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--gold);
@@ -820,46 +931,57 @@ a:focus-visible {
   border-radius: 10px;
 }
 
-/* Mobile polish */
 @media (max-width: 768px) {
   .header-nav-content {
     @apply h-[68px];
   }
-
   .hero-section {
     min-height: auto;
     padding-top: 42px;
     padding-bottom: 54px;
   }
-
-  .hero-section::before {
-    inset: 8px;
-    border-radius: 24px;
-  }
-
   .hero-image-container {
     width: 220px;
     height: 220px;
   }
-
   .category-card-inner {
     aspect-ratio: 1.06 / 1;
     border-radius: 24px;
   }
-
   .category-card-border {
     border-radius: 24px;
   }
-
   .category-card-content {
     padding: 18px;
   }
-
   .category-card-title {
     font-size: 1.55rem;
   }
-
   .home-stat + .home-stat::before {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    @apply py-12;
+  }
+  .footer-grid {
+    @apply gap-8;
+  }
+  .footer-col-title {
+    @apply text-base;
+  }
+  .footer-brand-name {
+    @apply text-2xl;
+  }
+  .footer-brand-icon {
+    @apply w-14 h-14;
+  }
+  .footer-brand-icon span {
+    @apply text-2xl;
+  }
+  .scroll-to-top-btn {
+    @apply w-12 h-12 bottom-4 left-4;
   }
 }
