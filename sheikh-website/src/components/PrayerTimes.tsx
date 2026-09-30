@@ -796,7 +796,8 @@ export const PrayerTimes = () => {
                 md:right-8
                 z-[9999]
                 w-[calc(100%-32px)]
-                max-w-sm
+                max-w-[280px]
+                md:max-w-sm
                 pointer-events-none
               "
             >
@@ -810,7 +811,7 @@ export const PrayerTimes = () => {
                   bg-white
                   dark:bg-card
                   shadow-2xl
-                  p-4
+                  p-3
                   md:p-5
                 "
                 style={{ borderRight: '4px solid var(--gold)' }}
@@ -841,8 +842,8 @@ export const PrayerTimes = () => {
                     {/* Icon */}
                     <div
                       className={`
-                        w-11 h-11
-                        md:w-12 md:h-12
+                        w-9 h-9
+                        md:w-11 md:h-11
                         shrink-0
                         rounded-full
                         flex items-center justify-center
@@ -858,10 +859,10 @@ export const PrayerTimes = () => {
                     >
                       {reminderType ===
                       'upcoming' ? (
-                        <Clock className="w-5 h-5 md:w-6 md:h-6" />
+                        <Clock className="w-4 h-4 md:w-5 md:h-5" />
                       ) : (
                         <Heart
-                          className="w-5 h-5 md:w-6 md:h-6"
+                          className="w-4 h-4 md:w-5 md:h-5"
                           fill="currentColor"
                         />
                       )}
@@ -883,7 +884,7 @@ export const PrayerTimes = () => {
                           />
                         )}
 
-                        <span className="text-xs md:text-sm font-bold text-gold">
+                        <span className="text-[11px] md:text-sm font-bold text-gold">
                           {reminderType ===
                           'upcoming'
                             ? `استعد لصلاة ${PRAYER_NAMES[reminderPrayer]}`
@@ -892,7 +893,7 @@ export const PrayerTimes = () => {
                       </div>
 
                       {/* Message */}
-                      <p className="text-sm md:text-base font-bold text-primary dark:text-primary-light leading-relaxed">
+                      <p className="text-[13px] md:text-sm font-bold text-primary dark:text-primary-light leading-relaxed">
                         {reminderType ===
                         'upcoming'
                           ? `صلاة ${PRAYER_NAMES[reminderPrayer]} الساعة ${formatTime(
@@ -951,9 +952,11 @@ export const PrayerTimes = () => {
                           hover:bg-primary-light
                           text-white
                           px-4
-                          py-2.5
+                          py-1.5
+                          md:py-2
                           font-bold
-                          text-sm
+                          text-[13px]
+                          md:text-sm
                           transition-all
                           shadow-md
                           hover:shadow-lg
